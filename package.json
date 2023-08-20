@@ -1,0 +1,23 @@
+{
+  "name": "vis-final-project",
+  "version": "1.0.0",
+  "description": "Final visualisation project: The better Pokedex.",
+  "main": "resources/js/main.js",
+  "scripts": {
+    "test": "test",
+    "start": "snowpack dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zevsky404/the-better-pokedex.git"
+  },
+  "author": "Chris, Theresa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zevsky404/the-better-pokedex/issues"
+  },
+  "homepage": "https://github.com/zevsky404/the-better-pokedex#readme",
+  "devDependencies": {
+    "snowpack": "^3.8.8"
+  }
+}
