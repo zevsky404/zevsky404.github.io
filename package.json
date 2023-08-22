@@ -21,6 +21,7 @@
     "snowpack": "^3.8.8"
   },
   "dependencies": {
+    "bootstrap": "^5.3.1",
     "d3": "^7.8.5"
   }
 }
