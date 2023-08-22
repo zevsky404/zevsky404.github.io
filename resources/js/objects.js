@@ -1,3 +1,4 @@
+// OBJECT STRUCTURES WHICH WILL BE USED OFTEN
 function BaseStats(hp, att, def, spAtt, spDef, sp) {
     this.hp = hp;
     this.attack = att;
