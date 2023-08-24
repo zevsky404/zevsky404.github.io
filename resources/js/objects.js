@@ -27,13 +27,4 @@ export function Pokemon(pokeName) {
     this.stats = new BaseStats(0,0,0,0,0,0);
     this.generation = "gen";
     this.isLegendary = false;
-
-    this.fetchImage = function (name) {
-
-    };
-
-    this.initialise = function () {
-
-    };
-
 }

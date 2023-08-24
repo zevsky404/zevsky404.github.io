@@ -9,7 +9,7 @@
     <script type="module" src="resources/js/objects.js"></script>
     <script type="module" src="resources/js/utils.js"></script>
     <script type="module" src="resources/js/debug.js"></script>
-    <script type="text/javascript" src="resources/js/main.js"></script>
+    <script type="module" src="resources/js/main.js"></script>
 
 </head>
 <body>
@@ -22,52 +22,20 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                    <li><a href="#" class="nav-link px-2 text-secondary">Pokédex</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Team Builder</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Breeding</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search Pokémon..." aria-label="Search">
+                    <input type="search" id="search-pokemon" class="form-control form-control-dark text-bg-light" placeholder="Search Pokémon..." aria-label="Search">
                 </form>
             </div>
         </div>
     </header>
-    <div class="pokemon-container">
+    <div class="pokedex-container" id="main-page-container">
 
-        <div class="row mb-3 text-center">
-            <div class="col-4 themed-grid-col">
-                <div class="card" style="width: 18rem; display: none;">
-                    <div class="card-header">#2 - Ivysaur</div>
-                    <img class="card-img-top" src="resources/data/pokemon-images/ivysaur.png" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="icon grass">
-                            <img src="resources/images/icons/grass.svg"/>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="col-4 themed-grid-col" id="test-cell">
-
-            </div>
-            <div class="col-4 themed-grid-col">Test</div>
-        </div>
-        <div class="row mb-3 text-center">
-            <div class="col-4 themed-grid-col">Test</div>
-            <div class="col-4 themed-grid-col">Test</div>
-            <div class="col-4 themed-grid-col">Test</div>
-
-        </div>
-        <div class="row mb-3 text-center">
-            <div class="col-4 themed-grid-col">Test</div>
-            <div class="col-4 themed-grid-col">Test</div>
-            <div class="col-4 themed-grid-col">Test</div>
-
-        </div>
     </div>
 
 </body>
