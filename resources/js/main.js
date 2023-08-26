@@ -32,5 +32,17 @@ function filterPokemon(element) {
     }
 }
 
+function zoomCards() {
+    let slider = document.getElementById("card-zoom");
+    let allCards = document.getElementsByClassName("card");
+
+    for (let card of allCards) {
+        card.style.width = `${slider.value}rem`;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", buildIndexStructure);
  let filterBox = document.getElementById("search-pokemon");
+
+ let slider = document.getElementById("card-zoom")
+slider.addEventListener("input", zoomCards);

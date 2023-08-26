@@ -63,7 +63,7 @@ export function buildPokemon(datasetInfo) {
 export function buildCard(pokemon) {
     let cardDiv = document.createElement("div");
     cardDiv.className = "card";
-    cardDiv.style.width = "12rem";
+    cardDiv.style.width = "18rem";
 
     let cardTitle = document.createElement("div");
     cardTitle.className = "card-header";
