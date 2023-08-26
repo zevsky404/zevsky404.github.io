@@ -25,6 +25,9 @@ export function buildPokemon(datasetInfo) {
     pokemon.number = datasetInfo.pokedex_number;
     pokemon.type1 = datasetInfo.type1;
     pokemon.type2 = datasetInfo.type2;
+    if (datasetInfo.type1 === datasetInfo.type2) {
+        pokemon.type2 = "";
+    }
     pokemon.classification = datasetInfo.classfication;
     pokemon.height = datasetInfo.height_m;
     pokemon.weight = datasetInfo.weight_kg;
@@ -62,7 +65,8 @@ export function buildPokemon(datasetInfo) {
 
 export function buildCard(pokemon) {
     let cardDiv = document.createElement("div");
-    cardDiv.className = "card";
+    cardDiv.classList.add("card");
+    cardDiv.classList.add("custom-card")
     cardDiv.style.width = "18rem";
 
     let cardTitle = document.createElement("div");

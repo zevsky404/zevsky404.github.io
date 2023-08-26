@@ -6,12 +6,14 @@ function debugMain() {
         const ivysaur = buildPokemon(result[1]);
         console.log(ivysaur);
 
-        let arceus = findPokemonByName("Arceus", result);
-        let arceus1 = findPokemonByNumber("493", result);
-        console.log(arceus)
-        console.log(arceus1)
-        arceus = buildPokemon(arceus);
-        console.log(arceus);
+        let raichu = findPokemonByName("Raichu", result);
+        console.log(raichu)
+        raichu = buildPokemon(raichu);
+        console.log(raichu)
+
+        let charmander = findPokemonByName("Charmander", result);
+        charmander = buildPokemon(charmander);
+        console.log(charmander)
 
 
     })

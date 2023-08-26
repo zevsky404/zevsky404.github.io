@@ -1,8 +1,8 @@
-.themed-grid-col {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    background-color: rgba(112.520718, 44.062154, 249.437846, .15);
-    border: 1px solid rgba(112.520718, 44.062154, 249.437846, .3);
+body {
+    background-color: #0C69C8;
+    background-image: url("../images/background-1.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .pokedex-container {
@@ -13,10 +13,38 @@
     align-content: flex-start;
     gap: 10px;
     margin: 20px 20px 20px 20px;
+    background: none;
 }
 
 .card {
     transition: all .5s ease-in;
+}
+
+.custom-card {
+    box-sizing: border-box;
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(6px);
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-weight: bolder;
+    color: black;
+}
+
+.custom-card:hover {
+    border: 1px solid black;
+    transform: scale(1.05);
+}
+
+.custom-card:active {
+    transform: scale(0.95) rotateZ(1.7deg);
 }
 
 .hidden {
