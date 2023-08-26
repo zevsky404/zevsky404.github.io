@@ -18,16 +18,22 @@ function buildIndexStructure() {
     })
 }
 
-function filterPokemon(element) {
+function filterPokemonByName() {
     let mainContainer = document.getElementById("main-page-container");
     let allCards = document.getElementsByClassName("card");
-    let input = element.target.value;
+    let input = document.getElementById("search-pokemon");
 
     for (let card of allCards) {
-        const title = card.children[0].textContent;
+        // takes entire title of card, converts it to lower case and splits it at the - to remove number
+        const title = card.children[0].textContent
+            .toLowerCase()
+            .split("-")[1];
+        let surroundingLink = card.parentElement;
 
-        if(!input.toString().includes(title)) {
-            card.style.display = "none";
+        if (!title.includes(input.value.toLowerCase())) {
+            surroundingLink.classList.add("hidden");
+        } else if (surroundingLink.classList.contains("hidden")) {
+            surroundingLink.classList.remove("hidden");
         }
     }
 }
@@ -41,8 +47,14 @@ function zoomCards() {
     }
 }
 
+function clearInput(element) {
+    element.target.value = "";
+    let allCards = document.getElementsByClassName("card");
+}
+
 document.addEventListener("DOMContentLoaded", buildIndexStructure);
  let filterBox = document.getElementById("search-pokemon");
+filterBox.addEventListener("input", filterPokemonByName)
 
  let slider = document.getElementById("card-zoom")
 slider.addEventListener("input", zoomCards);
