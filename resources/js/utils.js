@@ -1,9 +1,8 @@
 // UTILITY FUNCTIONS USEFUL FOR THE ENTIRE PROJECT
 import * as d3 from "d3"
 import {Pokemon, BaseStats} from "./objects";
-import {easeQuadOut} from "d3";
 
-export let getCompletePokedexData = d3.csv("resources/data/pokemon.csv").then((response) => {
+export let getCompletePokedexData = d3.csv("/resources/data/pokemon.csv").then((response) => {
     return response;
 });
 

@@ -1,6 +1,5 @@
 // MAIN FILE WHICH CALLS FUNCTIONS FOR EASE OF WORKFLOW
 import {getCompletePokedexData, buildPokemon, findPokemonByName, findPokemonByNumber, buildCard} from "./utils";
-import data from "bootstrap/js/src/dom/data";
 
 function buildIndexStructure() {
     getCompletePokedexData.then((data) => {
