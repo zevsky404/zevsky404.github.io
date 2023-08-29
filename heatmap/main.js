@@ -1,5 +1,5 @@
 import * as d3 from "d3"
-import {buildCard, buildPokemon} from "../resources/js/utils";
+import {buildCard, buildPokemon, buildHeatmapIcon} from "../resources/js/utils";
 
 let getCompletePokedexData = d3.csv("../resources/data/pokemon.csv").then((response) => {
     return response;
@@ -11,13 +11,6 @@ const dimensions = {top: 20,
     left: 20,
     width: "100",
     height: 100};
-
-const svg = d3.select("#pokemon-heatmap")
-    .append("svg")
-        .attr("width", `${dimensions.width}% `)
-        .attr("height", `${dimensions.height}%`)
-    //.append("g")
-    //    .attr("transform", `translate(${dimensions.left}, ${dimensions.top})`);
 
 getCompletePokedexData.then(function (data) {
     const totalBaseStatValues = data.map(entry => parseInt(entry.base_total));
@@ -36,10 +29,11 @@ getCompletePokedexData.then(function (data) {
 
     for (let entry of data) {
         const pokemon = buildPokemon(entry);
-        const card = buildCard(pokemon)
+        const card = buildHeatmapIcon(pokemon)
         const main = d3.select("#pokemon-heatmap")
         let div = main.append('div')
-            .html(serialiser.serializeToString(card));
+            .html(serialiser.serializeToString(card))
+            .style("background-color", colour(pokemon.stats.hp));
 
 
     }

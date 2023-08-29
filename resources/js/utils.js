@@ -65,7 +65,7 @@ export function buildPokemon(datasetInfo) {
 export function buildCard(pokemon) {
     let cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
-    cardDiv.classList.add("custom-card")
+    cardDiv.classList.add("custom-card");
     cardDiv.style.width = "18rem";
 
     let cardTitle = document.createElement("div");
@@ -85,7 +85,7 @@ export function buildCard(pokemon) {
     iconHolderType1.className = `icon ${pokemon.type1}`;
 
     let iconImageType1 = document.createElement("img");
-    iconImageType1.src = `resources/images/icons/${pokemon.type1}.svg`
+    iconImageType1.src = `/resources/images/icons/${pokemon.type1}.svg`
 
     iconHolderType1.appendChild(iconImageType1);
     cardBody.appendChild(iconHolderType1);
@@ -98,11 +98,26 @@ export function buildCard(pokemon) {
         iconHolderType2.className = `icon ${pokemon.type2}`;
 
         let iconImageType2 = document.createElement("img");
-        iconImageType2.src = `resources/images/icons/${pokemon.type2}.svg`
+        iconImageType2.src = `/resources/images/icons/${pokemon.type2}.svg`
 
         iconHolderType2.appendChild(iconImageType2);
         cardBody.appendChild(iconHolderType2);
     }
 
     return cardDiv;
+}
+
+export function buildHeatmapIcon(pokemon) {
+    let cardDiv = document.createElement("div");
+    cardDiv.classList.add("card");
+    cardDiv.style.width = "2.1rem";
+    cardDiv.style.background = "transparent";
+
+    let image = document.createElement("img");
+    image.className = "card-img-top";
+    image.src = pokemon.image;
+
+    cardDiv.appendChild(image);
+    return cardDiv;
+
 }

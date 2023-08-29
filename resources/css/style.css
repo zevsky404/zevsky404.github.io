@@ -6,7 +6,7 @@ body {
     background-size: 100% 100%;
 }
 
-.pokedex-container {
+.pokemon-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -15,6 +15,11 @@ body {
     gap: 10px;
     margin: 20px 20px 20px 20px;
     background: none;
+}
+
+#pokemon-heatmap {
+    margin: 5px 285px 5px 5px;
+    gap: 2px;
 }
 
 .card {
