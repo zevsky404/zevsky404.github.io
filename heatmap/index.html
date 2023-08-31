@@ -10,7 +10,7 @@
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script type="module" src="main.js"></script>
 </head>
-<body>
+<body id="heatmap">
 
 <!--Header navbar-->
 <header class="p-3 text-bg-dark sticky-top">
@@ -32,7 +32,7 @@
 </header>
 
 <!--Sidebar-->
-<div class="flex-shrink-0 p-3 bg-white position-fixed h-100 overflow-auto" style="width: 280px; right:0;">
+<div class="flex-shrink-0 p-3 bg-white position-fixed h-100 overflow-y-scroll" style="width: 280px; right:0;">
     <div class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
         <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
         <span class="fs-5 fw-semibold">Filter Options</span>
@@ -187,11 +187,13 @@
             </button>
             <div class="collapse" id="stats-collapse" style="">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="link-dark rounded">Health Points</a></li>
-                    <li><a href="#" class="link-dark rounded">Attack</a></li>
-                    <li><a href="#" class="link-dark rounded">Defense</a></li>
-                    <li><a href="#" class="link-dark rounded">Special Attack</a></li>
-                    <li><a href="#" class="link-dark rounded">Special Defense</a></li>
+                    <li><a href="#" class="link-dark rounded" id="base-stat-filter">Total Base Stats</a></li>
+                    <li><a href="#" class="link-dark rounded" id="hp-filter">Health Points</a></li>
+                    <li><a href="#" class="link-dark rounded" id="attack-filter">Attack</a></li>
+                    <li><a href="#" class="link-dark rounded" id="defense-filter">Defense</a></li>
+                    <li><a href="#" class="link-dark rounded" id="special-attack-filter">Special Attack</a></li>
+                    <li><a href="#" class="link-dark rounded" id="special-defense-filter">Special Defense</a></li>
+                    <li><a href="#" class="link-dark rounded" id="speed-filter">Speed</a></li>
                 </ul>
             </div>
         </li>

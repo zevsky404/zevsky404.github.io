@@ -1,10 +1,11 @@
 // OBJECT STRUCTURES WHICH WILL BE USED OFTEN
-export function BaseStats(hp, att, def, spAtt, spDef, sp) {
+export function BaseStats(total, hp, att, def, spAtt, spDef, sp) {
+    this.base_total = total;
     this.hp = hp;
     this.attack = att;
     this.defense = def;
-    this.spAttack = spAtt;
-    this.spDefense = spDef;
+    this.sp_attack = spAtt;
+    this.sp_defense = spDef;
     this.speed = sp;
 }
 
@@ -24,7 +25,7 @@ export function Pokemon(pokeName) {
     this.experienceGrowth = 0.0;
     this.damageAgainst = [];
     this.baseStatsTotal = 0;
-    this.stats = new BaseStats(0,0,0,0,0,0);
+    this.stats = new BaseStats(0,0,0,0,0,0, 0);
     this.generation = "gen";
     this.isLegendary = false;
 }

@@ -19,7 +19,7 @@ export function findPokemonByNumber(pokedexNumber, data) {
 }
 
 export function buildPokemon(datasetInfo) {
-    let pokemon = new Pokemon(datasetInfo.name)
+    let pokemon = new Pokemon(datasetInfo.name);
     pokemon.image = getPokemonImagePath(datasetInfo.name);
     pokemon.number = datasetInfo.pokedex_number;
     pokemon.type1 = datasetInfo.type1;
@@ -54,8 +54,15 @@ export function buildPokemon(datasetInfo) {
             "steel" : datasetInfo.against_steel,
             "water" : datasetInfo.against_water
             };
-    pokemon.baseStatsTotal = datasetInfo.base_total;
-    pokemon.stats = new BaseStats(datasetInfo.hp, datasetInfo.attack, datasetInfo.defense, datasetInfo.sp_attack, datasetInfo.sp_defense, datasetInfo.speed);
+
+    pokemon.stats = new BaseStats(datasetInfo.base_total,
+        datasetInfo.hp,
+        datasetInfo.attack,
+        datasetInfo.defense,
+        datasetInfo.sp_attack,
+        datasetInfo.sp_defense,
+        datasetInfo.speed);
+
     pokemon.generation = datasetInfo.generation;
     pokemon.isLegendary = !Boolean(datasetInfo.is_legendary);
 
@@ -111,7 +118,7 @@ export function buildHeatmapIcon(pokemon) {
     let cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
     cardDiv.style.width = "2.1rem";
-    cardDiv.style.background = "transparent";
+    //cardDiv.style.background = "transparent";
 
     let image = document.createElement("img");
     image.className = "card-img-top";

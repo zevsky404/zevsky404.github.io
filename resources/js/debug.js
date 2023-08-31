@@ -15,6 +15,8 @@ function debugMain() {
         charmander = buildPokemon(charmander);
         console.log(charmander)
 
+        console.log(charmander.stats['hp'])
+
 
     })
 }
