@@ -43,7 +43,12 @@ function zoomCards() {
 
     for (let card of allCards) {
         card.style.width = `${slider.value}rem`;
+        if (slider.value < 5){
+            card.children[0].textContent = card.children[0].textContent.substring(0,4);
+        }
+        
     }
+    
 }
 
 function clearInput(element) {

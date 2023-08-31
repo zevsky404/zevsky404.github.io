@@ -77,7 +77,17 @@ export function buildCard(pokemon) {
 
     let cardTitle = document.createElement("div");
     cardTitle.className = "card-header";
-    cardTitle.innerText = `#${pokemon.number} - ${pokemon.name}`;
+    if (pokemon.number < 10){
+        cardTitle.innerText = `#00${pokemon.number} - ${pokemon.name}`;
+    }
+    else if (pokemon.number < 100){
+        cardTitle.innerText = `#0${pokemon.number} - ${pokemon.name}`;
+    }
+    else{
+        cardTitle.innerText = `#${pokemon.number} - ${pokemon.name}`;
+    }
+    
+
 
     let image = document.createElement("img");
     image.className = "card-img-top";
