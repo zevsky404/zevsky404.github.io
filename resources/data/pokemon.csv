@@ -27,10 +27,10 @@ abilities,against_bug,against_dark,against_dragon,against_electric,against_fairy
 "['Static', 'Lightningrod', 'Surge Surfer']",1,1,1,0.5,1,1,1,0.5,1,1,2,1,1,1,1,1,0.5,1,85,2560,70,485,75,Mouse Pokémon,50,1000000,,60,Raichuライチュウ,Raichu,50,26,95,85,110,electric,electric,,1,0
 "['Sand Veil', 'Sand Rush', 'Snow Cloak', 'Slush Rush']",1,1,1,0,1,1,1,1,1,2,1,2,1,0.5,1,0.5,1,2,75,5120,70,300,255,Mouse Pokémon,90,1000000,,50,Sandサンド,Sandshrew,50,27,10,35,40,ground,ice,,1,0
 "['Sand Veil', 'Sand Rush', 'Snow Cloak', 'Slush Rush']",1,1,1,0,1,1,1,1,1,2,1,2,1,0.5,1,0.5,1,2,100,5120,70,450,90,Mouse Pokémon,120,1000000,,75,Sandpanサンドパン,Sandslash,50,28,25,65,65,ground,ice,,1,0
-"['Poison Point', 'Rivalry', 'Hustle']",0.5,1,1,1,0.5,0.5,1,1,1,0.5,2,1,1,0.5,2,1,1,1,47,5120,70,275,235,Poison Pin Pokémon,52,1059860,0.4,55,Nidoran?ニドラン♀,Nidoran♀,0,29,40,40,41,poison,,7.0,1,0
+"['Poison Point', 'Rivalry', 'Hustle']",0.5,1,1,1,0.5,0.5,1,1,1,0.5,2,1,1,0.5,2,1,1,1,47,5120,70,275,235,Poison Pin Pokémon,52,1059860,0.4,55,Nidoran?ニドラン♀,Nidoran-f,0,29,40,40,41,poison,,7.0,1,0
 "['Poison Point', 'Rivalry', 'Hustle']",0.5,1,1,1,0.5,0.5,1,1,1,0.5,2,1,1,0.5,2,1,1,1,62,5120,70,365,120,Poison Pin Pokémon,67,1059860,0.8,70,Nidorinaニドリーナ,Nidorina,0,30,55,55,56,poison,,20.0,1,0
 "['Poison Point', 'Rivalry', 'Sheer Force']",0.5,1,1,0,0.5,0.5,1,1,1,1,2,2,1,0.25,2,0.5,1,2,92,5120,70,505,45,Drill Pokémon,87,1059860,1.3,90,Nidoqueenニドクイン,Nidoqueen,0,31,75,85,76,poison,ground,60.0,1,0
-"['Poison Point', 'Rivalry', 'Hustle']",0.5,1,1,1,0.5,0.5,1,1,1,0.5,2,1,1,0.5,2,1,1,1,57,5120,70,273,235,Poison Pin Pokémon,40,1059860,0.5,46,Nidoran?ニドラン♂,Nidoran♂,100,32,40,40,50,poison,,9.0,1,0
+"['Poison Point', 'Rivalry', 'Hustle']",0.5,1,1,1,0.5,0.5,1,1,1,0.5,2,1,1,0.5,2,1,1,1,57,5120,70,273,235,Poison Pin Pokémon,40,1059860,0.5,46,Nidoran?ニドラン♂,Nidoran-m,100,32,40,40,50,poison,,9.0,1,0
 "['Poison Point', 'Rivalry', 'Hustle']",0.5,1,1,1,0.5,0.5,1,1,1,0.5,2,1,1,0.5,2,1,1,1,72,5120,70,365,120,Poison Pin Pokémon,57,1059860,0.9,61,Nidorinoニドリーノ,Nidorino,100,33,55,55,65,poison,,19.5,1,0
 "['Poison Point', 'Rivalry', 'Sheer Force']",0.5,1,1,0,0.5,0.5,1,1,1,1,2,2,1,0.25,2,0.5,1,2,102,5120,70,505,45,Drill Pokémon,77,1059860,1.4,81,Nidokingニドキング,Nidoking,100,34,85,75,85,poison,ground,62.0,1,0
 "['Cute Charm', 'Magic Guard', 'Friend Guard']",0.5,0.5,0,1,1,0.5,1,1,1,1,1,1,1,2,1,1,2,1,45,2560,140,323,150,Fairy Pokémon,48,800000,0.6,70,Pippiピッピ,Clefairy,24.6,35,60,65,35,fairy,,7.5,1,0
@@ -120,7 +120,7 @@ abilities,against_bug,against_dark,against_dragon,against_electric,against_fairy
 "['Swift Swim', 'Water Veil', 'Lightningrod']",1,1,1,2,1,1,0.5,1,1,2,1,0.5,1,1,1,1,0.5,0.5,92,5120,70,450,60,Goldfish Pokémon,65,1000000,1.3,80,Azumaoアズマオウ,Seaking,50,119,65,80,68,water,,39.0,1,0
 "['Illuminate', 'Natural Cure', 'Analytic']",1,1,1,2,1,1,0.5,1,1,2,1,0.5,1,1,1,1,0.5,0.5,45,5120,70,340,225,Starshape Pokémon,55,1250000,0.8,30,Hitodemanヒトデマン,Staryu,,120,70,55,85,water,,34.5,1,0
 "['Illuminate', 'Natural Cure', 'Analytic']",2,2,1,2,1,0.5,0.5,1,2,2,1,0.5,1,1,0.5,1,0.5,0.5,75,5120,70,520,60,Mysterious Pokémon,85,1250000,1.1,60,Starmieスターミー,Starmie,,121,100,85,115,water,psychic,80.0,1,0
-"['Soundproof', 'Filter', 'Technician']",1,1,0,1,1,0.25,1,1,2,1,1,1,1,2,0.5,1,2,1,45,6400,70,460,45,Barrier Pokémon,65,1000000,1.3,40,Barrierdバリヤード,MrMime,50,122,100,120,90,psychic,fairy,54.5,1,0
+"['Soundproof', 'Filter', 'Technician']",1,1,0,1,1,0.25,1,1,2,1,1,1,1,2,0.5,1,2,1,45,6400,70,460,45,Barrier Pokémon,65,1000000,1.3,40,Barrierdバリヤード,Mr-Mime,50,122,100,120,90,psychic,fairy,54.5,1,0
 "['Swarm', 'Technician', 'Steadfast']",0.5,1,1,2,1,0.25,2,2,1,0.25,0,2,1,1,1,4,1,1,110,6400,70,500,45,Mantis Pokémon,80,1000000,1.5,70,Strikeストライク,Scyther,50,123,55,80,105,bug,flying,56.0,1,0
 "['Oblivious', 'Forewarn', 'Dry Skin']",2,2,1,1,1,1,2,1,2,1,1,0.5,1,1,0.5,2,2,1,50,6400,70,455,45,Humanshape Pokémon,35,1000000,1.4,65,Rougelaルージュラ,Jynx,0,124,115,95,95,ice,psychic,40.6,1,0
 "['Static', 'Vital Spirit']",1,1,1,0.5,1,1,1,0.5,1,1,2,1,1,1,1,1,0.5,1,83,6400,70,490,45,Electric Pokémon,57,1000000,1.1,65,Elebooエレブー,Electabuzz,75.4,125,95,85,105,electric,,30.0,1,0
@@ -437,7 +437,7 @@ abilities,against_bug,against_dark,against_dragon,against_electric,against_fairy
 "['Levitate', 'Heatproof', 'Heavy Metal']",1,2,0.5,1,0.5,1,2,0.5,2,0.5,2,0.5,0.5,0,0.25,0.5,0.5,1,24,5120,70,300,255,Bronze Pokémon,86,1000000,0.5,57,Dohmirrorドーミラー,Bronzor,,436,24,86,23,steel,psychic,60.5,4,0
 "['Levitate', 'Heatproof', 'Heavy Metal']",1,2,0.5,1,0.5,1,2,0.5,2,0.5,2,0.5,0.5,0,0.25,0.5,0.5,1,89,5120,70,500,90,Bronze Bell Pokémon,116,1000000,1.3,67,Dohtakunドータクン,Bronzong,,437,79,116,33,steel,psychic,187.0,4,0
 "['Sturdy', 'Rock Head', 'Rattled']",1,1,1,1,1,2,0.5,0.5,1,2,2,1,0.5,0.5,1,1,2,2,80,5120,70,290,255,Bonsai Pokémon,95,1000000,0.5,50,Usohachiウソハチ,Bonsly,50,438,10,45,10,rock,,15.0,4,0
-"['Soundproof', 'Filter', 'Technician']",1,1,0,1,1,0.25,1,1,2,1,1,1,1,2,0.5,1,2,1,25,6400,70,310,145,Mime Pokémon,45,1000000,0.6,20,Maneneマネネ,MimeJr,50,439,70,90,60,psychic,fairy,13.0,4,0
+"['Soundproof', 'Filter', 'Technician']",1,1,0,1,1,0.25,1,1,2,1,1,1,1,2,0.5,1,2,1,25,6400,70,310,145,Mime Pokémon,45,1000000,0.6,20,Maneneマネネ,Mime-Jr,50,439,70,90,60,psychic,fairy,13.0,4,0
 "['Natural Cure', 'Serene Grace', 'Friend Guard']",1,1,1,1,1,2,1,1,0,1,1,1,1,1,1,1,1,1,5,10240,140,220,130,Playhouse Pokémon,5,800000,0.6,100,Pinpukuピンプク,Happiny,0,440,15,65,30,normal,,24.4,4,0
 "['Keen Eye', 'Tangled Feet', 'Big Pecks']",0.5,1,1,2,1,1,1,1,0,0.5,0,2,1,1,1,2,1,1,65,5120,35,411,30,Music Note Pokémon,45,1059860,0.5,76,Perapペラップ,Chatot,50,441,92,42,91,normal,flying,1.9,4,0
 "['Pressure', 'Infiltrator']",1,1,1,1,2,0,1,1,1,1,1,1,0,0.5,0,1,1,1,92,7680,70,485,100,Forbidden Pokémon,108,1000000,1.0,50,Mikarugeミカルゲ,Spiritomb,50,442,92,108,35,ghost,dark,108.0,4,0
@@ -667,7 +667,7 @@ abilities,against_bug,against_dark,against_dragon,against_electric,against_fairy
 "['Shield Dust', 'Compoundeyes', 'Friend Guard']",0.5,1,1,2,1,0.25,2,2,1,0.25,0,2,1,1,1,4,1,1,52,3840,70,411,45,Scale Pokémon,50,1000000,1.2,80,Viviyonビビヨン,Vivillon,50,666,90,50,89,bug,flying,17.0,6,0
 "['Rivalry', 'Unnerve', 'Moxie']",0.5,1,1,1,0.5,2,0.5,1,0,0.5,2,0.5,1,1,1,2,0.5,2,50,5120,70,369,220,Lion Cub Pokémon,58,1059860,0.6,62,Shishikoシシコ,Litleo,11.2,667,73,54,72,fire,normal,13.5,6,0
 "['Rivalry', 'Unnerve', 'Moxie']",0.5,1,1,1,0.5,2,0.5,1,0,0.5,2,0.5,1,1,1,2,0.5,2,68,5120,70,507,65,Royal Pokémon,72,1059860,1.5,86,Kaenjishiカエンジシ,Pyroar,11.2,668,109,66,106,fire,normal,81.5,6,0
-"['Flower Veil', 'Symbiosis']",0.5,0.5,0,1,1,0.5,1,1,1,1,1,1,1,2,1,1,2,1,38,5120,70,303,225,Single Bloom Pokémon,39,1000000,0.1,44,Flabebeフラベベ,Flabébé,0,669,61,79,42,fairy,,0.1,6,0
+"['Flower Veil', 'Symbiosis']",0.5,0.5,0,1,1,0.5,1,1,1,1,1,1,1,2,1,1,2,1,38,5120,70,303,225,Single Bloom Pokémon,39,1000000,0.1,44,Flabebeフラベベ,Flabebe,0,669,61,79,42,fairy,,0.1,6,0
 "['Flower Veil', 'Symbiosis']",0.5,0.5,0,1,1,0.5,1,1,1,1,1,1,1,2,1,1,2,1,65,5120,70,551,120,Fairy Pokémon,67,1000000,0.2,74,Floetteフラエッテ,Floette,0,670,125,128,92,fairy,,0.9,6,0
 "['Flower Veil', 'Symbiosis']",0.5,0.5,0,1,1,0.5,1,1,1,1,1,1,1,2,1,1,2,1,65,5120,70,552,45,Garden Pokémon,68,1000000,1.1,78,Florgesフラージェス,Florges,0,671,112,154,75,fairy,,10.0,6,0
 "['Sap Sipper', 'Grass Pelt']",2,1,1,0.5,1,1,2,2,1,0.5,0.5,2,1,2,1,1,1,0.5,65,5120,70,350,200,Mount Pokémon,48,1000000,0.9,66,Meecleメェークル,Skiddo,50,672,62,57,52,grass,,31.0,6,0
