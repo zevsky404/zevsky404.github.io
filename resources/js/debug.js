@@ -1,5 +1,6 @@
 // PRINT STATEMENTS FOR DEBUGGING
 import {getCompletePokedexData, buildPokemon, findPokemonByName, findPokemonByNumber, buildCard} from "./utils";
+import {getElement} from "bootstrap/js/src/util";
 function debugMain() {
     getCompletePokedexData.then((result) => {
         console.log(result[1]);
@@ -15,7 +16,7 @@ function debugMain() {
         charmander = buildPokemon(charmander);
         console.log(charmander)
 
-        console.log(charmander.stats['hp'])
+        console.log(document.getElementById("normal-checkbox"))
 
 
     })

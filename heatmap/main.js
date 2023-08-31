@@ -28,10 +28,23 @@ function colourHeatmapBy(stat, interpolator, data) {
         card.style.backgroundColor = colour(pokemon.stats[`${stat}`]);
     }
 
-
-
-
 }
+//isn't updating properly; works once and never again
+function filterByType(types, data) {    //types = array with all selected types
+    let allCards = document.getElementsByClassName("card");
+
+    for (let card of allCards) {
+        const pokemonName = card.classList[1];
+        let pokemon = findPokemonByName(pokemonName, data);
+        pokemon = buildPokemon(pokemon);
+
+        if (!types.includes(pokemon.type1) && !types.includes(pokemon.type1)) {
+            card.style.display = "none";
+        }
+    }
+}
+
+
 getCompletePokedexData.then(function (data) {
     let tooltip = d3.select("#pokemon-heatmap")
         .append("div")
@@ -77,6 +90,7 @@ getCompletePokedexData.then(function (data) {
             // mouse events go here
     }
 
+
     let hpFilter = document.getElementById("hp-filter");
     let attackFilter = document.getElementById("attack-filter");
     let defenseFilter = document.getElementById("defense-filter");
@@ -85,6 +99,31 @@ getCompletePokedexData.then(function (data) {
     let speedFilter = document.getElementById("speed-filter");
     let baseStatFilter = document.getElementById("base-stat-filter");
 
+    let typeCheckboxes = document.querySelectorAll("input[type=checkbox][name=type-selector]");
+    let genCheckboxes =  document.querySelectorAll("input[type=checkbox][name=generation-selector]");
+
+    let selectedTypes = [];
+    let selectedGens = [];
+
+    typeCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change",  () => {
+            selectedTypes = Array.from(typeCheckboxes)
+                .filter(element => element.checked)
+                .map(element => element.nextElementSibling.innerText.toLowerCase());
+            console.log(selectedTypes)
+            filterByType(selectedTypes, data);
+        });
+    });
+
+    genCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+            selectedGens = Array.from(genCheckboxes)
+                .filter(element => element.checked)
+                .map(element => element.nextElementSibling.innerText.toLowerCase());
+            filterByType(selectedGens,data);
+        });
+    });
+
     hpFilter.addEventListener("click", () => colourHeatmapBy("hp", d3.interpolateYlGn, data));
     attackFilter.addEventListener("click", () => colourHeatmapBy("attack", d3.interpolateOrRd, data));
     defenseFilter.addEventListener("click", () => colourHeatmapBy("defense", d3.interpolateGnBu, data));
@@ -92,7 +131,6 @@ getCompletePokedexData.then(function (data) {
     spDefenseFilter.addEventListener("click", () => colourHeatmapBy("sp_defense", d3.interpolateBuPu, data));
     speedFilter.addEventListener("click", () => colourHeatmapBy("speed", d3.interpolateGreys, data));
     baseStatFilter.addEventListener("click", () => colourHeatmapBy("base_total", d3.interpolateYlOrBr, data));
-
 
 });
 
