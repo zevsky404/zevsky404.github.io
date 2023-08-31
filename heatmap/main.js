@@ -32,6 +32,22 @@ function colourHeatmapBy(stat, interpolator, data) {
 
 
 }
+//isn't updating properly; works once and never again
+function filterByType(types, data) {    //types = array with all selected types
+    let allCards = document.getElementsByClassName("card");
+
+    for (let card of allCards) {
+        const pokemonName = card.classList[1];
+        let pokemon = findPokemonByName(pokemonName, data);
+        pokemon = buildPokemon(pokemon);
+
+        if (!types.includes(pokemon.type1) && !types.includes(pokemon.type1)) {
+            card.style.display = "none";
+        }
+    }
+}
+
+
 getCompletePokedexData.then(function (data) {
     let tooltip = d3.select("#pokemon-heatmap")
         .append("div")
@@ -76,6 +92,7 @@ getCompletePokedexData.then(function (data) {
             .html(serialiser.serializeToString(card));
             // mouse events go here
     }
+
 
     let hpFilter = document.getElementById("hp-filter");
     let attackFilter = document.getElementById("attack-filter");
