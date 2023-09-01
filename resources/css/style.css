@@ -17,7 +17,7 @@ body {
     align-items: baseline;
     align-content: flex-start;
     gap: 10px;
-    margin: 20px 20px 20px 20px;
+    margin: 20px 20px 20px 60px;
     background: none;
 }
 
@@ -32,9 +32,15 @@ body {
 
 .card .card-header {
     width: 100%;
-    padding: 2px 5px 2px 5px;
+    padding: 0;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.card-img-top {
+    border-radius: inherit;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
 }
 
 .custom-card {
@@ -234,5 +240,3 @@ body {
     font-weight: 600;
     margin-bottom: 0;
 }
-
-
