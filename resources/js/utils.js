@@ -73,6 +73,7 @@ export function buildCard(pokemon) {
     let cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
     cardDiv.classList.add("custom-card");
+    cardDiv.classList.add(pokemon.name);
     cardDiv.style.width = "18rem";
 
     let cardTitle = document.createElement("div");
@@ -127,8 +128,8 @@ export function buildCard(pokemon) {
 export function buildHeatmapIcon(pokemon) {
     let cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
+    cardDiv.classList.add(pokemon.name);
     cardDiv.style.width = "2.1rem";
-    //cardDiv.style.background = "transparent";
 
     let image = document.createElement("img");
     image.className = "card-img-top";

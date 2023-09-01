@@ -30,6 +30,11 @@ body {
     transition: all .5s ease-in;
 }
 
+.card .card-header {
+    width: 100%;
+    padding: 2px 0 2px 0;
+}
+
 .custom-card {
     box-sizing: border-box;
     background: rgba(217, 217, 217, 0.58);

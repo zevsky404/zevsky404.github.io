@@ -83,7 +83,6 @@ getCompletePokedexData.then(function (data) {
     for (let entry of data) {
         const pokemon = buildPokemon(entry);
         const card = buildHeatmapIcon(pokemon);
-        card.classList.add(pokemon.name);
         const main = d3.select("#pokemon-heatmap");
         let div = main.append('div')
             .html(serialiser.serializeToString(card));

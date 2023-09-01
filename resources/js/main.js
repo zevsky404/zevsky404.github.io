@@ -45,6 +45,8 @@ function zoomCards() {
         card.style.width = `${slider.value}rem`;
         if (slider.value < 5){
             card.children[0].textContent = card.children[0].textContent.substring(0,4);
+        } else if (!card.children[0].textContent.includes(card.classList[2])) {
+            card.children[0].textContent += ` - ${card.classList[2]}`;
         }
         
     }
