@@ -1,5 +1,5 @@
 // MAIN FILE WHICH CALLS FUNCTIONS FOR EASE OF WORKFLOW
-import {getCompletePokedexData, buildPokemon, findPokemonByName, findPokemonByNumber, buildCard} from "./utils";
+import {getCompletePokedexData, buildPokemon, buildCard, shortenText, getTextNodeWidth} from "./utils";
 
 function buildIndexStructure() {
     getCompletePokedexData.then((data) => {
@@ -45,10 +45,9 @@ function zoomCards() {
         card.style.width = `${slider.value}rem`;
         if (slider.value < 5){
             card.children[0].textContent = card.children[0].textContent.substring(0,4);
-        } else if (!card.children[0].textContent.includes(card.classList[2])) {
-            card.children[0].textContent += ` - ${card.classList[2]}`;
+        } else if (!card.children[0].textContent.includes(card.classList[3])) {
+            card.children[0].textContent += ` - ${card.classList[3]}`;
         }
-        
     }
     
 }

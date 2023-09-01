@@ -32,7 +32,9 @@ body {
 
 .card .card-header {
     width: 100%;
-    padding: 2px 0 2px 0;
+    padding: 2px 5px 2px 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .custom-card {
