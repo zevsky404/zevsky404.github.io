@@ -140,28 +140,3 @@ export function buildHeatmapIcon(pokemon) {
     return cardDiv;
 
 }
-
-export function shortenText(text, maxLength = 10, postfix = "…") {
-    if (!text) {
-        return "";
-    }
-    if (text.length <= maxLength + postfix.length) {
-        return text;
-    }
-    return text.slice(0, maxLength).trim() + postfix;
-}
-
-export function getTextNodeWidth(textNode) {
-    let width = 0;
-    if (document.createRange) {
-        let range = document.createRange();
-        range.selectNodeContents(textNode);
-        if (range.getBoundingClientRect) {
-            const rect = range.getBoundingClientRect();
-            if (rect) {
-                width = rect.right - rect.left;
-            }
-        }
-    }
-    return width;
-}
