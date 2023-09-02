@@ -29,7 +29,7 @@ function colourHeatmapBy(stat, interpolator, data) {
     }
 
 }
-//isn't updating properly; works once and never again
+
 function filterByType(types, data) {    //types = array with all selected types
     let allCards = document.getElementsByClassName("card");
 
@@ -38,8 +38,37 @@ function filterByType(types, data) {    //types = array with all selected types
         let pokemon = findPokemonByName(pokemonName, data);
         pokemon = buildPokemon(pokemon);
 
-        if (!types.includes(pokemon.type1) && !types.includes(pokemon.type1)) {
-            card.style.display = "none";
+        if (types.length === 0){
+            card.style.display = "flex";
+        }
+        else if (types.includes(pokemon.type1) || types.includes(pokemon.type2)) {
+            //console.log(pokemon.type1, pokemon.type2)
+            card.style.display = "flex";
+        }
+        else{
+            card.style.display = 'none'
+            //console.log(pokemon.type1, pokemon.type2)
+        }
+    }
+}
+
+function filterByGeneration(generations, data) {    //generations = array with all selected generations
+    let allCards = document.getElementsByClassName("card");
+
+    for (let card of allCards) {
+        const pokemonName = card.classList[1];
+        let pokemon = findPokemonByName(pokemonName, data);
+        pokemon = buildPokemon(pokemon);
+
+        if (generations.length === 0){
+            card.style.display = "flex";
+        }
+        else if (generations.includes(pokemon.generation)) {
+            card.style.display = "flex";
+        }
+        else{
+            card.style.display = 'none';
+            //console.log(pokemon.generation)
         }
     }
 }
@@ -109,8 +138,10 @@ getCompletePokedexData.then(function (data) {
             selectedTypes = Array.from(typeCheckboxes)
                 .filter(element => element.checked)
                 .map(element => element.nextElementSibling.innerText.toLowerCase());
-            console.log(selectedTypes)
+            //console.log(selectedTypes);
             filterByType(selectedTypes, data);
+            
+            
         });
     });
 
@@ -118,8 +149,10 @@ getCompletePokedexData.then(function (data) {
         checkbox.addEventListener("change", () => {
             selectedGens = Array.from(genCheckboxes)
                 .filter(element => element.checked)
-                .map(element => element.nextElementSibling.innerText.toLowerCase());
-            filterByType(selectedGens,data);
+                .map(element => element.nextElementSibling.innerText.toLowerCase().match(/(\d+)/)[0]);
+            //console.log(selectedGens);
+            filterByGeneration(selectedGens,data);
+
         });
     });
 
