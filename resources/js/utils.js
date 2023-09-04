@@ -64,7 +64,7 @@ export function buildPokemon(datasetInfo) {
         datasetInfo.speed);
 
     pokemon.generation = datasetInfo.generation;
-    pokemon.isLegendary = !Boolean(datasetInfo.is_legendary);
+    pokemon.isLegendary = datasetInfo.is_legendary === "1";
 
     return pokemon;
 }

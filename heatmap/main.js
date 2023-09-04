@@ -30,7 +30,22 @@ function colourHeatmapBy(stat, interpolator, data) {
 
 }
 
-function filterByType(types, data) {    //types = array with all selected types
+function colourHeatmapByWeaknessAgainst(type, data) {
+    const colour = d3.scaleOrdinal()
+        .range(["#ca0020","#ffffff","#bababa","#404040"])
+        .domain(["2.0", "1", "0.5", "0.25"]);
+
+    let allCards = document.getElementsByClassName("card");
+
+    for (let card of allCards) {
+        const pokemonName = card.classList[1];
+        let pokemon = findPokemonByName(pokemonName, data);
+        pokemon = buildPokemon(pokemon);
+        card.style.backgroundColor = colour(pokemon.damageAgainst[`${type}`]);
+    }
+}
+
+function filter(types, generations, legendary, data){
     let allCards = document.getElementsByClassName("card");
 
     for (let card of allCards) {
@@ -38,41 +53,53 @@ function filterByType(types, data) {    //types = array with all selected types
         let pokemon = findPokemonByName(pokemonName, data);
         pokemon = buildPokemon(pokemon);
 
-        if (types.length === 0){
-            card.style.display = "flex";
+        if (types.length === 0 && generations.length === 0 && legendary[2]){
+            card.parentElement.style.display = "flex";
         }
-        else if (types.includes(pokemon.type1) || types.includes(pokemon.type2)) {
-            //console.log(pokemon.type1, pokemon.type2)
-            card.style.display = "flex";
+        else if (types.length === 0 && generations.length === 0 && legendary[0] && pokemon.isLegendary){
+            card.parentElement.style.display = "flex";
+        }
+        else if (types.length === 0 && generations.length === 0 && legendary[1] && !pokemon.isLegendary) {
+            card.parentElement.style.display = "flex";
+        }
+        else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
+                                                                            && legendary[2]){
+            card.parentElement.style.display = "flex";
+        }
+        else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
+                                                                            && legendary[0] && pokemon.isLegendary){
+            card.parentElement.style.display = "flex";
+        }
+        else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
+                                                                            && legendary[1] && !pokemon.isLegendary){
+            card.parentElement.style.display = "flex";
+        }
+        else if (generations.includes(pokemon.generation) && types.length === 0 && legendary[2]){
+            card.parentElement.style.display = "flex";
+        }
+        else if (generations.includes(pokemon.generation) && types.length === 0 && legendary[0] && pokemon.isLegendary){
+            card.parentElement.style.display = "flex";
+        }
+        else if (generations.includes(pokemon.generation) && types.length === 0 && legendary[1] && !pokemon.isLegendary){
+            card.parentElement.style.display = "flex";
+        }
+        else if (generations.includes(pokemon.generation) &&
+            (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && legendary[2]){
+            card.parentElement.style.display = "flex";
+        }
+        else if (generations.includes(pokemon.generation) &&
+            (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && legendary[0] && pokemon.isLegendary){
+            card.parentElement.style.display = "flex";
+        }
+        else if (generations.includes(pokemon.generation) &&
+            (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && legendary[1] && !pokemon.isLegendary){
+            card.parentElement.style.display = "flex";
         }
         else{
-            card.style.display = 'none'
-            //console.log(pokemon.type1, pokemon.type2)
+            card.parentElement.style.display = 'none';
         }
     }
 }
-
-function filterByGeneration(generations, data) {    //generations = array with all selected generations
-    let allCards = document.getElementsByClassName("card");
-
-    for (let card of allCards) {
-        const pokemonName = card.classList[1];
-        let pokemon = findPokemonByName(pokemonName, data);
-        pokemon = buildPokemon(pokemon);
-
-        if (generations.length === 0){
-            card.style.display = "flex";
-        }
-        else if (generations.includes(pokemon.generation)) {
-            card.style.display = "flex";
-        }
-        else{
-            card.style.display = 'none';
-            //console.log(pokemon.generation)
-        }
-    }
-}
-
 
 getCompletePokedexData.then(function (data) {
     let tooltip = d3.select("#pokemon-heatmap")
@@ -119,29 +146,27 @@ getCompletePokedexData.then(function (data) {
     }
 
 
-    let hpFilter = document.getElementById("hp-filter");
-    let attackFilter = document.getElementById("attack-filter");
-    let defenseFilter = document.getElementById("defense-filter");
-    let spAttackFilter = document.getElementById("special-attack-filter");
-    let spDefenseFilter = document.getElementById("special-defense-filter");
-    let speedFilter = document.getElementById("speed-filter");
-    let baseStatFilter = document.getElementById("base-stat-filter");
-
     let typeCheckboxes = document.querySelectorAll("input[type=checkbox][name=type-selector]");
     let genCheckboxes =  document.querySelectorAll("input[type=checkbox][name=generation-selector]");
+    let legendRadio = document.querySelectorAll("input[type=radio][name=legendary-selector]")
 
     let selectedTypes = [];
     let selectedGens = [];
+    let legendary = [];
 
     typeCheckboxes.forEach((checkbox) => {
         checkbox.addEventListener("change",  () => {
             selectedTypes = Array.from(typeCheckboxes)
                 .filter(element => element.checked)
                 .map(element => element.nextElementSibling.innerText.toLowerCase());
-            //console.log(selectedTypes);
-            filterByType(selectedTypes, data);
-            
-            
+            filter(selectedTypes, selectedGens, legendary, data);
+        });
+    });
+
+    legendRadio.forEach((radio) => {
+        radio.addEventListener("change", () => {
+            legendary = [legendRadio[0].checked, legendRadio[1].checked, legendRadio[2].checked];
+            filter(selectedTypes, selectedGens, legendary, data);
         });
     });
 
@@ -150,11 +175,18 @@ getCompletePokedexData.then(function (data) {
             selectedGens = Array.from(genCheckboxes)
                 .filter(element => element.checked)
                 .map(element => element.nextElementSibling.innerText.toLowerCase().match(/(\d+)/)[0]);
-            //console.log(selectedGens);
-            filterByGeneration(selectedGens,data);
+            filter(selectedTypes, selectedGens, legendary, data);
 
         });
     });
+
+    let hpFilter = document.getElementById("hp-filter");
+    let attackFilter = document.getElementById("attack-filter");
+    let defenseFilter = document.getElementById("defense-filter");
+    let spAttackFilter = document.getElementById("special-attack-filter");
+    let spDefenseFilter = document.getElementById("special-defense-filter");
+    let speedFilter = document.getElementById("speed-filter");
+    let baseStatFilter = document.getElementById("base-stat-filter");
 
     hpFilter.addEventListener("click", () => colourHeatmapBy("hp", d3.interpolateYlGn, data));
     attackFilter.addEventListener("click", () => colourHeatmapBy("attack", d3.interpolateOrRd, data));
@@ -163,6 +195,44 @@ getCompletePokedexData.then(function (data) {
     spDefenseFilter.addEventListener("click", () => colourHeatmapBy("sp_defense", d3.interpolateBuPu, data));
     speedFilter.addEventListener("click", () => colourHeatmapBy("speed", d3.interpolateGreys, data));
     baseStatFilter.addEventListener("click", () => colourHeatmapBy("base_total", d3.interpolateYlOrBr, data));
+
+    let normalWeakness = document.getElementById("normal-weakness");
+    let fireWeakness = document.getElementById("fire-weakness");
+    let waterWeakness = document.getElementById("water-weakness");
+    let grassWeakness = document.getElementById("grass-weakness");
+    let flyingWeakness = document.getElementById("flying-weakness");
+    let fightingWeakness = document.getElementById("fighting-weakness");
+    let poisonWeakness = document.getElementById("poison-weakness");
+    let electricWeakness = document.getElementById("electric-weakness");
+    let groundWeakness = document.getElementById("ground-weakness");
+    let rockWeakness = document.getElementById("rock-weakness");
+    let psychicWeakness = document.getElementById("psychic-weakness");
+    let iceWeakness = document.getElementById("ice-weakness");
+    let bugWeakness = document.getElementById("bug-weakness");
+    let ghostWeakness = document.getElementById("ghost-weakness");
+    let steelWeakness = document.getElementById("steel-weakness");
+    let dragonWeakness = document.getElementById("dragon-weakness");
+    let darkWeakness = document.getElementById("dark-weakness");
+    let fairyWeakness = document.getElementById("fairy-weakness");
+
+    normalWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("normal", data));
+    fireWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("fire", data));
+    waterWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("water", data));
+    grassWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("grass", data));
+    flyingWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("flying", data));
+    fightingWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("fight", data));
+    poisonWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("poison", data));
+    electricWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("electric", data));
+    groundWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("ground", data));
+    rockWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("rock", data));
+    psychicWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("psychic", data));
+    iceWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("ice", data));
+    bugWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("bug", data));
+    ghostWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("ghost", data));
+    steelWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("steel", data));
+    dragonWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("dragon", data));
+    darkWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("dark", data));
+    fairyWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("fairy", data));
 
 });
 
