@@ -240,3 +240,16 @@ body {
     font-weight: 600;
     margin-bottom: 0;
 }
+
+.bulletIcon {
+    width: 10px;
+    height: 10px;
+}
+
+.legendBullet {
+    display: flex;
+}
+
+.legend-menu {
+    width: 200px;
+}

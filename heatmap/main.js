@@ -1,6 +1,5 @@
 import * as d3 from "d3"
 import {buildCard, buildPokemon, buildHeatmapIcon, findPokemonByName} from "../resources/js/utils";
-import {color} from "d3";
 
 let getCompletePokedexData = d3.csv("../resources/data/pokemon.csv").then((response) => {
     return response;
@@ -98,6 +97,37 @@ function filter(types, generations, legendary, data){
         else{
             card.parentElement.style.display = 'none';
         }
+    }
+}
+
+function createContentForLegend(option) {
+    let container = document.getElementById("legend-wrapper");
+
+    switch (option) {
+        case "weakness":
+            let multipliers = ["2.0", "1.0", "0.5", "0.25"];
+            let colours = ["#ca0020","#ffffff","#bababa","#404040"];
+
+
+            for (let i = 0; i < multipliers.length; ++i) {
+                let legendBullet = document.createElement("div");
+                legendBullet.classList.add("legend-bullet");
+
+                let bulletIcon = document.createElement("div");
+                bulletIcon.classList.add("bulletIcon")
+                bulletIcon.style.backgroundColor = colours[i];
+
+                let bulletText = document.createElement("div");
+                bulletText.innerText = multipliers[i];
+
+                legendBullet.appendChild(bulletIcon);
+                legendBullet.appendChild(bulletText);
+
+                container.appendChild(legendBullet);
+            }
+
+
+
     }
 }
 
@@ -216,6 +246,7 @@ getCompletePokedexData.then(function (data) {
     let fairyWeakness = document.getElementById("fairy-weakness");
 
     normalWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("normal", data));
+    normalWeakness.addEventListener("click", () => createContentForLegend("weakness"));
     fireWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("fire", data));
     waterWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("water", data));
     grassWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("grass", data));
