@@ -120,10 +120,10 @@
             </div>
         </li>
         <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#legendary-collapse" aria-expanded="true">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#legendary-collapse" aria-expanded="false">
                 Legendary Status
             </button>
-            <div class="collapse show" id="legendary-collapse" style="margin-left: 20px;">
+            <div class="collapse" id="legendary-collapse" style="margin-left: 20px;">
                 <div class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="legendary-selector" id="legendary-radio">
@@ -134,7 +134,7 @@
                         <label for="not-legendary-radio">Not Legendary</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="legendary-selector"  id="both-radio">
+                        <input class="form-check-input" type="radio" name="legendary-selector"  id="both-radio" checked>
                         <label for="both-radio">Both</label>
                     </div>
                 </div>
@@ -195,6 +195,34 @@
                     <li><a href="#" class="link-dark rounded" id="special-defense-filter">Special Defense</a></li>
                     <li><a href="#" class="link-dark rounded" id="speed-filter">Speed</a></li>
                 </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#weakness-collapse" aria-expanded="false">
+                Weak against...
+            </button>
+            <div class="collapse" id="weakness-collapse" style="">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-dark rounded" id="normal-weakness">Normal</a></li>
+                    <li><a href="#" class="link-dark rounded" id="fire-weakness">Fire</a></li>
+                    <li><a href="#" class="link-dark rounded" id="water-weakness">Water</a></li>
+                    <li><a href="#" class="link-dark rounded" id="grass-weakness">Grass</a></li>
+                    <li><a href="#" class="link-dark rounded" id="flying-weakness">Flying</a></li>
+                    <li><a href="#" class="link-dark rounded" id="fighting-weakness">Fighting</a></li>
+                    <li><a href="#" class="link-dark rounded" id="poison-weakness">Poison</a></li>
+                    <li><a href="#" class="link-dark rounded" id="electric-weakness">Electric</a></li>
+                    <li><a href="#" class="link-dark rounded" id="ground-weakness">Ground</a></li>
+                    <li><a href="#" class="link-dark rounded" id="rock-weakness">Rock</a></li>
+                    <li><a href="#" class="link-dark rounded" id="psychic-weakness">Psychic</a></li>
+                    <li><a href="#" class="link-dark rounded" id="ice-weakness">Ice</a></li>
+                    <li><a href="#" class="link-dark rounded" id="bug-weakness">Bug</a></li>
+                    <li><a href="#" class="link-dark rounded" id="ghost-weakness">Ghost</a></li>
+                    <li><a href="#" class="link-dark rounded" id="steel-weakness">Steel</a></li>
+                    <li><a href="#" class="link-dark rounded" id="dragon-weakness">Dragon</a></li>
+                    <li><a href="#" class="link-dark rounded" id="dark-weakness">Dark</a></li>
+                    <li><a href="#" class="link-dark rounded" id="fairy-weakness">Fairy</a></li>
+                </ul>
+
             </div>
         </li>
         <li class="border-top my-3"></li>
