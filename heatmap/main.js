@@ -48,7 +48,7 @@ function colourHeatmapByWeight(data){
     const filterValues = data.map(entry => parseFloat(entry["weight_kg"]));
     //console.log(filterValues)
     const colour = d3.scaleSequential()
-        .interpolator(d3.interpolateRgbBasis(["white", "green", "brown"]))
+        .interpolator(d3.interpolateOranges)
         .domain([d3.min(filterValues), d3.max(filterValues)]);
 
     let allCards = document.getElementsByClassName("card");
@@ -64,7 +64,7 @@ function colourHeatmapByWeight(data){
 function colourHeatmapByCatchRate(data){
     const filterValues = data.map(entry => parseInt(entry["capture_rate"]));
     const colour = d3.scaleSequential()
-        .interpolator(d3.interpolateRgbBasis(["white", "purple", "blue"]))
+        .interpolator(d3.interpolateRgbBasis(d3.schemeSpectral[3]))
         .domain([d3.min(filterValues), d3.max(filterValues)]);
 
     let allCards = document.getElementsByClassName("card");
