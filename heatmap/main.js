@@ -44,6 +44,39 @@ function colourHeatmapByWeaknessAgainst(type, data) {
     }
 }
 
+function colourHeatmapByWeight(data){
+    const filterValues = data.map(entry => parseFloat(entry["weight_kg"]));
+    //console.log(filterValues)
+    const colour = d3.scaleSequential()
+        .interpolator(d3.interpolateRgbBasis(["white", "green", "brown"]))
+        .domain([d3.min(filterValues), d3.max(filterValues)]);
+
+    let allCards = document.getElementsByClassName("card");
+
+    for (let card of allCards) {
+        const pokemonName = card.classList[1];
+        let pokemon = findPokemonByName(pokemonName, data);
+        pokemon = buildPokemon(pokemon);
+        card.style.backgroundColor = colour(pokemon.weight);
+    }
+}
+
+function colourHeatmapByCatchRate(data){
+    const filterValues = data.map(entry => parseInt(entry["capture_rate"]));
+    const colour = d3.scaleSequential()
+        .interpolator(d3.interpolateRgbBasis(["white", "purple", "blue"]))
+        .domain([d3.min(filterValues), d3.max(filterValues)]);
+
+    let allCards = document.getElementsByClassName("card");
+
+    for (let card of allCards) {
+        const pokemonName = card.classList[1];
+        let pokemon = findPokemonByName(pokemonName, data);
+        pokemon = buildPokemon(pokemon);
+        card.style.backgroundColor = colour(pokemon.captureRate);
+    }
+}
+
 function filter(types, generations, legendary, data){
     let allCards = document.getElementsByClassName("card");
     
@@ -287,6 +320,11 @@ getCompletePokedexData.then(function (data) {
     darkWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("dark", data));
     fairyWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("fairy", data));
 
+    let weight = document.getElementById("weight");
+    weight.addEventListener("click", () => colourHeatmapByWeight(data));
+
+    let catchRate = document.getElementById("catch-rate");
+    catchRate.addEventListener("click", () => colourHeatmapByCatchRate(data));
 });
 
 
