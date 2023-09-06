@@ -1,5 +1,5 @@
 import * as d3 from "d3"
-import {buildCard, buildPokemon, buildHeatmapIcon, findPokemonByName} from "../resources/js/utils";
+import {buildCard, buildPokemon, buildHeatmapIcon, findPokemonByName, minMaxScaling} from "../resources/js/utils";
 
 let getCompletePokedexData = d3.csv("../resources/data/pokemon.csv").then((response) => {
     return response;
@@ -45,7 +45,7 @@ function colourHeatmapByWeaknessAgainst(type, data) {
 }
 
 function colourHeatmapByWeight(data){
-    const filterValues = data.map(entry => parseFloat(entry["weight_kg"]));
+    const filterValues = minMaxScaling("weight_kg", 0, 100, data);
     //console.log(filterValues)
     const colour = d3.scaleSequential()
         .interpolator(d3.interpolateOranges)
@@ -64,7 +64,7 @@ function colourHeatmapByWeight(data){
 function colourHeatmapByCatchRate(data){
     const filterValues = data.map(entry => parseInt(entry["capture_rate"]));
     const colour = d3.scaleSequential()
-        .interpolator(d3.interpolateRgbBasis(d3.schemeSpectral[3]))
+        .interpolator(d3.interpolatePuRd)
         .domain([d3.min(filterValues), d3.max(filterValues)]);
 
     let allCards = document.getElementsByClassName("card");
@@ -149,7 +149,7 @@ function explicitFilter(types){
         else if (types.length === 2 && (types.includes(pokemon.type1) && types.includes(pokemon.type2))) {
             card.parentElement.style.display = "flex";
         }
-        else{
+        else {
             card.parentElement.style.display = "none";
         }
     }

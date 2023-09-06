@@ -140,3 +140,18 @@ export function buildHeatmapIcon(pokemon) {
     return cardDiv;
 
 }
+
+export function minMaxScaling(column, newMin, newMax, data) {
+    let scaleValues = data.map(entry => parseFloat(entry[`${column}`]));
+    scaleValues = scaleValues.filter(entry => !isNaN(entry));
+    const minValue = Math.min(...scaleValues);
+    const maxValue = Math.max(...scaleValues);
+    let scaledValues = [];
+
+    for (let value in scaleValues) {
+        let newValue = (value - minValue) / (maxValue - minValue) * (newMax - newMin) + newMin;
+        scaledValues.push(newValue);
+    }
+
+    return scaledValues;
+}
