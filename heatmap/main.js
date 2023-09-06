@@ -276,8 +276,26 @@ function createContentForLegend(option) {
 
                 container.appendChild(legendBullet);
             }
-
     }
+}
+
+function scaleElementsBySpace() {
+    const visibleElements = document.querySelectorAll(".heatmap-icon-container[style='display: flex;']");
+    let newSize;
+    console.log(visibleElements)
+    if (visibleElements.length === 801) {
+        newSize = 2.1;
+    } else {
+        newSize = visibleElements.length / 10 / 2;
+    }
+
+    console.log(newSize)
+
+    for (let element of visibleElements) {
+        element.children[0].style.width = `${newSize}rem`;
+        element.children[0].style.height = `${newSize}rem`;
+    }
+
 }
 
 getCompletePokedexData.then(function (data) {
@@ -320,6 +338,8 @@ getCompletePokedexData.then(function (data) {
         const card = buildHeatmapIcon(pokemon);
         const main = d3.select("#pokemon-heatmap");
         let div = main.append('div')
+            .attr("class", "heatmap-icon-container")
+            .style("display", "flex")
             .html(serialiser.serializeToString(card));
             // mouse events go here
     }
@@ -341,6 +361,7 @@ getCompletePokedexData.then(function (data) {
                 .filter(element => element.checked)
                 .map(element => element.nextElementSibling.innerText.toLowerCase());
             filter(selectedTypes, selectedGens, legendary, data);
+            scaleElementsBySpace();
         });
     });
 
@@ -427,6 +448,7 @@ getCompletePokedexData.then(function (data) {
 
     let weight = document.getElementById("weight");
     weight.addEventListener("click", () => colourHeatmapByWeight(data));
+    weight.addEventListener("click", scaleElementsBySpace);
 
     let catchRate = document.getElementById("catch-rate");
     catchRate.addEventListener("click", () => colourHeatmapByCatchRate(data));
