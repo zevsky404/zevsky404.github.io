@@ -307,3 +307,19 @@ body {
     display: flex;
     justify-content: space-between;
 }
+
+input[type=checkbox][disabled] + label {
+    color: #ccc;
+}
+
+.toggle-with-label {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-label {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: lighter;
+    padding: 5px;
+}

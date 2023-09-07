@@ -365,15 +365,11 @@ getCompletePokedexData.then(function (data) {
 
     // Three function that change the tooltip when user hover / move / leave a cell
     const mouseover = function(event,d) {
-        /*tooltip
+        tooltip
             .style("opacity", 1)
         d3.select(this)
             .style("stroke", "black")
-            .style("opacity", 1)*/
-        /*tooltip.style("opacity", 1)*/
-        d3.select(this)
-            .style("opacity", 0.5);
-        console.log(d3.select(this))
+            .style("opacity", 1)
     }
     const mousemove = function(event, d) {
         tooltip
@@ -384,11 +380,11 @@ getCompletePokedexData.then(function (data) {
         d3.select(this)
     }
     const mouseleave = function(event,d) {
-        /*tooltip
-            .style("opacity", 0)*/
-        d3.select(this)
-            //.style("stroke", "none")
+        tooltip
             .style("opacity", 0)
+        d3.select(this)
+            .style("stroke", "none")
+            .style("opacity", 0.8)
     }
     const serialiser = new XMLSerializer();
 
@@ -399,9 +395,9 @@ getCompletePokedexData.then(function (data) {
         let div = main.append('div')
             .attr("class", "heatmap-icon-container")
             .style("display", "flex")
-            .html(serialiser.serializeToString(card))        
-            //.on("mouseover", mouseover) 
-            //.on("mousemove", mousemove) 
+            .html(serialiser.serializeToString(card))
+            //.on("mouseover", mouseover)
+            //.on("mousemove", mousemove)
             //.on("mouseleave", mouseleave);
     }
 
@@ -524,7 +520,7 @@ getCompletePokedexData.then(function (data) {
                 .filter(element => element.checked)
                 .map(element => element.nextElementSibling.innerText.toLowerCase());
             filter(selectedTypes, selectedGens, legendary, data, explicit);
-            scaleElementsBySpace();       
+            scaleElementsBySpace();
     });
 });
 
