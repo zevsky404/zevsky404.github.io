@@ -45,8 +45,7 @@ function colourHeatmapByWeaknessAgainst(type, data) {
 }
 
 function colourHeatmapByWeight(data){
-    const filterValues = minMaxScaling("weight_kg", 0, 100, data);
-    //console.log(filterValues)
+    const filterValues = minMaxScaling("weight_kg", 0, 300, data);
     const colour = d3.scaleSequential()
         .interpolator(d3.interpolateOranges)
         .domain([d3.min(filterValues), d3.max(filterValues)]);
@@ -77,76 +76,126 @@ function colourHeatmapByCatchRate(data){
     }
 }
 
-function filter(types, generations, legendary, data){
+function filter(types, generations, legendary, data, explicit){
+    
+    if(explicit){
+        explicitFilter(types, generations, legendary, data);
+    }
+    else{
+        let allCards = document.getElementsByClassName("card");
+        for (let card of allCards) {
+            const pokemonName = card.classList[1];
+            let pokemon = findPokemonByName(pokemonName, data);
+            pokemon = buildPokemon(pokemon);
+
+            if (types.length === 0 && generations.length === 0 && (legendary[2] || legendary.length === 0)){
+                card.parentElement.style.display = "flex";
+            }
+            else if (types.length === 0 && generations.length === 0 && legendary[0] && pokemon.isLegendary){
+                card.parentElement.style.display = "flex";
+            }
+            else if (types.length === 0 && generations.length === 0 && legendary[1] && !pokemon.isLegendary) {
+                card.parentElement.style.display = "flex";
+            }
+            else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
+                                                                                && (legendary[2] || legendary.length === 0)){
+                card.parentElement.style.display = "flex";
+            }
+            else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
+                                                                                && legendary[0] && pokemon.isLegendary){
+                card.parentElement.style.display = "flex";
+            }
+            else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
+                                                                                && legendary[1] && !pokemon.isLegendary){
+                card.parentElement.style.display = "flex";
+            }
+            else if (generations.includes(pokemon.generation) && types.length === 0 && (legendary[2] || legendary.length === 0)){
+                card.parentElement.style.display = "flex";
+            }
+            else if (generations.includes(pokemon.generation) && types.length === 0 && legendary[0] && pokemon.isLegendary){
+                card.parentElement.style.display = "flex";
+            }
+            else if (generations.includes(pokemon.generation) && types.length === 0 && legendary[1] && !pokemon.isLegendary){
+                card.parentElement.style.display = "flex";
+            }
+            else if (generations.includes(pokemon.generation) &&
+                (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && (legendary[2] || legendary.length === 0)){
+                card.parentElement.style.display = "flex";
+            }
+            else if (generations.includes(pokemon.generation) &&
+                (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && legendary[0] && pokemon.isLegendary){
+                card.parentElement.style.display = "flex";
+            }
+            else if (generations.includes(pokemon.generation) &&
+                (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && legendary[1] && !pokemon.isLegendary){
+                card.parentElement.style.display = "flex";
+            }
+            else{
+                card.parentElement.style.display = 'none';
+            }
+        }
+    }
+}
+
+function explicitFilter(types, generations, legendary, data){
     let allCards = document.getElementsByClassName("card");
     
     for (let card of allCards) {
         const pokemonName = card.classList[1];
         let pokemon = findPokemonByName(pokemonName, data);
         pokemon = buildPokemon(pokemon);
-
         if (types.length === 0 && generations.length === 0 && (legendary[2] || legendary.length === 0)){
+            card.parentElement.style.display = "flex";
+        }
+        else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.length === 0 && (legendary[2] || legendary.length === 0)){
+            card.parentElement.style.display = "flex";
+        }
+        else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.length === 0 && (legendary[2] || legendary.length === 0)) {
+            card.parentElement.style.display = "flex";
+        }
+        else if (types.length === 0 && generations.includes(pokemon.generation) && (legendary[2] || legendary.length === 0)){
+            card.parentElement.style.display = "flex";
+        }
+        else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.includes(pokemon.generation) && (legendary[2] || legendary.length === 0)){
+            card.parentElement.style.display = "flex";
+        }
+        else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.includes(pokemon.generation) && (legendary[2] || legendary.length === 0)) {
             card.parentElement.style.display = "flex";
         }
         else if (types.length === 0 && generations.length === 0 && legendary[0] && pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
-        else if (types.length === 0 && generations.length === 0 && legendary[1] && !pokemon.isLegendary) {
+        else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.length === 0 && legendary[0] && pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
-        else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
-                                                                            && (legendary[2] || legendary.length === 0)){
+        else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.length === 0 && legendary[0] && pokemon.isLegendary) {
             card.parentElement.style.display = "flex";
         }
-        else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
-                                                                            && legendary[0] && pokemon.isLegendary){
+        else if (types.length === 0 && generations.includes(pokemon.generation) && legendary[0] && pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
-        else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
-                                                                            && legendary[1] && !pokemon.isLegendary){
+        else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.includes(pokemon.generation) && legendary[0] && pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
-        else if (generations.includes(pokemon.generation) && types.length === 0 && (legendary[2] || legendary.length === 0)){
+        else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.includes(pokemon.generation) && legendary[0] && pokemon.isLegendary) {
             card.parentElement.style.display = "flex";
         }
-        else if (generations.includes(pokemon.generation) && types.length === 0 && legendary[0] && pokemon.isLegendary){
+        else if (types.length === 0 && generations.length === 0 && legendary[1] && !pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
-        else if (generations.includes(pokemon.generation) && types.length === 0 && legendary[1] && !pokemon.isLegendary){
+        else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.length === 0 && legendary[1] && !pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
-        else if (generations.includes(pokemon.generation) &&
-            (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && (legendary[2] || legendary.length === 0)){
+        else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.length === 0 && legendary[1] && !pokemon.isLegendary) {
             card.parentElement.style.display = "flex";
         }
-        else if (generations.includes(pokemon.generation) &&
-            (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && legendary[0] && pokemon.isLegendary){
+        else if (types.length === 0 && generations.includes(pokemon.generation) && legendary[1] && !pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
-        else if (generations.includes(pokemon.generation) &&
-            (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && legendary[1] && !pokemon.isLegendary){
+        else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.includes(pokemon.generation) && legendary[1] && !pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
-        else{
-            card.parentElement.style.display = 'none';
-        }
-    }
-}
-
-function explicitFilter(types){
-    let allCards = document.getElementsByClassName("card");
-    
-    for (let card of allCards) {
-        const pokemonName = card.classList[1];
-        let pokemon = findPokemonByName(pokemonName, data);
-        pokemon = buildPokemon(pokemon);
-        if (types.length === 0){
-            card.parentElement.style.display = "flex";
-        }
-        else if (types.length === 1 && (types.includes(pokemon.type1) || types.includes(pokemon.type2))){
-            card.parentElement.style.display = "flex";
-        }
-        else if (types.length === 2 && (types.includes(pokemon.type1) && types.includes(pokemon.type2))) {
+        else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.includes(pokemon.generation) && legendary[1] && !pokemon.isLegendary) {
             card.parentElement.style.display = "flex";
         }
         else {
@@ -155,14 +204,14 @@ function explicitFilter(types){
     }
 }
 
-function toggleTypeFiltering() {
+function toggleTypeFiltering(explicit) {
     let checkbox = document.getElementById("type-toggle-checkbox");
     let typeListing1 = document.getElementById("type-listing");
-    let typeListing2;
-    let parent = document.getElementById("type-collapse");
+    /*let typeListing2;
+    let parent = document.getElementById("type-collapse");*/
 
     if (checkbox.checked) {
-        parent.classList.add("custom-flex");
+        /*parent.classList.add("custom-flex");
         typeListing2 = document.createElement("div");
         typeListing2.classList.add("btn-toggle-nav");
         typeListing2.classList.add("list-unstyled");
@@ -243,11 +292,13 @@ function toggleTypeFiltering() {
             "                        <label for=\"fairy-checkbox\">Fairy</label>\n" +
             "                    </div>"
 
-        parent.appendChild(typeListing2);
+        parent.appendChild(typeListing2);*/
+        return explicit = true;
     }
-    else if (parent.children[1]) {
-        parent.children[1].remove();
-        parent.classList.remove("custom-flex");
+    else /*if (parent.children[1])*/ {
+        /*parent.children[1].remove();
+        parent.classList.remove("custom-flex");*/
+        return explicit = false;
     }
 }
 
@@ -282,14 +333,17 @@ function createContentForLegend(option) {
 function scaleElementsBySpace() {
     const visibleElements = document.querySelectorAll(".heatmap-icon-container[style='display: flex;']");
     let newSize;
-    console.log(visibleElements)
+    const size = (1 / visibleElements.length) * 1700;
     if (visibleElements.length === 801) {
         newSize = 2.1;
+    } else if (size > 4 && visibleElements.length > 50) {
+        newSize = 4;
+    } else if (visibleElements.length <= 50){
+        newSize = 8;
     } else {
-        newSize = visibleElements.length / 10 / 2;
+        newSize = size;
     }
 
-    console.log(newSize)
 
     for (let element of visibleElements) {
         element.children[0].style.width = `${newSize}rem`;
@@ -348,19 +402,20 @@ getCompletePokedexData.then(function (data) {
     let typeCheckboxes = document.querySelectorAll("input[type=checkbox][name=type-selector]");
     let genCheckboxes =  document.querySelectorAll("input[type=checkbox][name=generation-selector]");
     let legendRadio = document.querySelectorAll("input[type=radio][name=legendary-selector]");
-    let type2Checkboxes = document.querySelectorAll("input[type=checkbox][name=type2-selector]");
+    //let type2Checkboxes = document.querySelectorAll("input[type=checkbox][name=type2-selector]");
 
     let selectedTypes = [];
     let selectedTypes2 = [];
     let selectedGens = [];
     let legendary = [];
+    let explicit = false;
 
     typeCheckboxes.forEach((checkbox) => {
         checkbox.addEventListener("change",  () => {
             selectedTypes = Array.from(typeCheckboxes)
                 .filter(element => element.checked)
                 .map(element => element.nextElementSibling.innerText.toLowerCase());
-            filter(selectedTypes, selectedGens, legendary, data);
+            filter(selectedTypes, selectedGens, legendary, data, explicit);
             scaleElementsBySpace();
         });
     });
@@ -368,7 +423,8 @@ getCompletePokedexData.then(function (data) {
     legendRadio.forEach((radio) => {
         radio.addEventListener("change", () => {
             legendary = [legendRadio[0].checked, legendRadio[1].checked, legendRadio[2].checked];
-            filter(selectedTypes, selectedGens, legendary, data);
+            filter(selectedTypes, selectedGens, legendary, data, explicit);
+            scaleElementsBySpace();
         });
     });
 
@@ -377,19 +433,20 @@ getCompletePokedexData.then(function (data) {
             selectedGens = Array.from(genCheckboxes)
                 .filter(element => element.checked)
                 .map(element => element.nextElementSibling.innerText.toLowerCase().match(/(\d+)/)[0]);
-            filter(selectedTypes, selectedGens, legendary, data);
-
+            filter(selectedTypes, selectedGens, legendary, data, explicit);
+            scaleElementsBySpace();
         });
     });
 
-    type2Checkboxes.forEach((checkbox) => {
+    /*type2Checkboxes.forEach((checkbox) => {
         checkbox.addEventListener("change", () => {
             selectedTypes2 = Array.from(type2Checkboxes)
                 .filter(element => element.checked)
                 .map(element => element.nextElementSibling.innerText.toLowerCase());
-            explicitFilter(selectedTypes2);
+            filter(selectedTypes, selectedGens, legendary, data, explicit);
+            scaleElementsBySpace();
         });
-    });
+    });*/
 
     let hpFilter = document.getElementById("hp-filter");
     let attackFilter = document.getElementById("attack-filter");
@@ -454,7 +511,7 @@ getCompletePokedexData.then(function (data) {
     catchRate.addEventListener("click", () => colourHeatmapByCatchRate(data));
 
     let typeToggle = document.getElementById("type-toggle-checkbox");
-    typeToggle.addEventListener("change", toggleTypeFiltering);
+    typeToggle.addEventListener("change", () => explicit = toggleTypeFiltering(explicit));
 });
 
 
