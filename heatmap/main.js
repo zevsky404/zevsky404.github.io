@@ -352,6 +352,26 @@ function scaleElementsBySpace() {
 
 }
 
+function disableCheckboxes() {
+    let allCheckboxes = document.querySelectorAll("input[type=checkbox][name=type-selector]");
+    let selectedTypes = [];
+
+    allCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change",  () => {
+            selectedTypes = Array.from(allCheckboxes)
+                .filter(element => element.checked);
+        });
+    });
+
+    if (selectedTypes.length >= 2) {
+        for (let box in allCheckboxes) {
+            if (!box.checked) {
+                box.disabled = true;
+            }
+        }
+    }
+}
+
 getCompletePokedexData.then(function (data) {
     let tooltip = d3.select("#pokemon-heatmap")
         .append("div")
