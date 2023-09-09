@@ -6,6 +6,7 @@
     <link rel="icon" type="image/icon" href="../resources/images/favicon.gif?v=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="../resources/css/style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example">
@@ -20,51 +21,21 @@
                     <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                         <img src="../resources/images/favicon.gif?v=1" alt="Bulbasaur Icon" style="width: 50px; height: 55px; margin-right: 10px; margin-bottom: 10px;">
                     </a>
-                    <a class="nav-link active" aria-current="page" href="#">Overview - Pokemon Name</a>
+                    <a class="nav-link active fs-4" aria-current="page" href="#">Pokémon Overview Page</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<main>
-    <div class="left-view">
-        <img src="#">
-        <div class="pokemon-short-description">
-            <span class="pokemon-title">#000 - Pokemon Name</span>
-            <span class="pokemon-classification">Test Pokemon</span>
-        </div>
-        <div class="type-icon-holder>">
-            <div class="icon grass">
-                <img>
-            </div>
-            <div class="icon poison">
-                <img>
-            </div>
-        </div>
-    </div>
-    <div class="right-view">
-        <div class="stats-diagram" id="diagram">
+<main id="overview">
 
-        </div>
-        <div class="general-information">
-            <span class="gen-info-span">Japanese Name:</span>
-            <span class="gen-info-span">Generation:</span>
-            <span class="gen-info-span">Weight in kg:</span>
-            <span class="gen-info-span">Height in m:</span>
-            <span class="gen-info-span">Ability</span>
-            <span class="gen-info-span">Weak against:</span>
-            <span class="gen-info-span">Resistant against:</span>
-        </div>
-        <div class="leveling-breeding-information">
-            <span class="lvl-info-span">Experience Growth:</span>
-            <span class="lvl-info-span">Egg steps:</span>
-            <span class="lvl-info-span">Catch Rate:</span>
-        </div>
-    </div>
     <script type="module">
+        import {buildOverview} from "./main";
+
         const queryString = window.location.search;
         const urlParameter = new URLSearchParams(queryString);
         let pokemonName = urlParameter.get("pokemon");
+        buildOverview(pokemonName);
     </script>
 </main>
 </body>
