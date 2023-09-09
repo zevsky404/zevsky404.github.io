@@ -378,33 +378,30 @@ getCompletePokedexData.then(function (data) {
         .style("display", "none")
         .attr("class", "tooltip")
         .style("background-color", "white")
+        .style("opacity", 1)
         .style("border", "solid")
         .style("border-width", "2px")
         .style("border-radius", "3px")
         .style("padding", "5px");
 
     // Three function that change the tooltip when user hover / move / leave a cell
-    const mouseover = function(event,d) {
-        tooltip
-            .style("opacity", 1)
-        d3.select(this)
-            .style("stroke", "black")
-            .style("opacity", 1)
+    const mouseover = function() {
+        tooltip.style("display", "block")
+        d3.select(this)._groups[0][0].children[0].style.borderColor = "#282929";
     }
-    const mousemove = function(event, d) {
+    const mousemove = function(event) {
+        let pokemon = findPokemonByName(d3.select(this)._groups[0][0].children[0].classList[1], data);
+        pokemon = buildPokemon(pokemon);
         tooltip
-            .html("The exact value of<br>this cell is: " + event)
-            .style("left", (event.x)/2 + "px")
-            .style("top", (event.y)/2 + "px")
-            .style("position", "relative");
-        d3.select(this)
+            .html(`#${pokemon.number} - ${pokemon.name}`)
+            .style("left", event.x + 20 + "px")
+            .style("top", event.y + 20 + "px")
+            .style("position", "absolute");
     }
-    const mouseleave = function(event,d) {
+    const mouseleave = function() {
         tooltip
-            .style("opacity", 0)
-        d3.select(this)
-            .style("stroke", "none")
-            .style("opacity", 0.8)
+            .style("display", "none")
+        d3.select(this)._groups[0][0].children[0].style.borderColor = "#dee2e6"
     }
     const serialiser = new XMLSerializer();
 
@@ -416,9 +413,9 @@ getCompletePokedexData.then(function (data) {
             .attr("class", "heatmap-icon-container")
             .style("display", "flex")
             .html(serialiser.serializeToString(card))
-            //.on("mouseover", mouseover)
-            //.on("mousemove", mousemove)
-            //.on("mouseleave", mouseleave);
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseleave", mouseleave);
     }
 
 
