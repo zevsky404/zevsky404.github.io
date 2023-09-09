@@ -7,10 +7,10 @@ function buildIndexStructure() {
 
         for (const line of data) {
             let hyperlink = document.createElement("a");
-            hyperlink.href = `/overview/`;
 
             let pokemon = buildPokemon(line);
             let newCard = buildCard(pokemon);
+            hyperlink.href = `/overview/?pokemon=${pokemon.name}`;
             hyperlink.appendChild(newCard);
             mainContainer.appendChild(hyperlink);
         }
