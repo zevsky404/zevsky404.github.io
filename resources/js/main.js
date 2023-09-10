@@ -55,13 +55,13 @@ function zoomCards() {
         }
 
         if (slider.value <= 4.5) {
-            const type1Colour = getComputedStyle(types[0]).backgroundColor;
+            const type1Colour = getComputedStyle(types[0].children[1]).backgroundColor;
             let rgbValues1 = type1Colour.split(",");
             rgbValues1[0] = rgbValues1[0].substring(4);
             rgbValues1[2] = rgbValues1[2].slice(0,-1);
 
             if (types[1]) {
-                const type2Colour = getComputedStyle(types[1]).backgroundColor;
+                const type2Colour = getComputedStyle(types[1].children[1]).backgroundColor;
                 let rgbValues2 = type2Colour.split(",");
                 rgbValues2[0] = rgbValues2[0].substring(4);
                 rgbValues2[2] = rgbValues2[2].slice(0,-1);
