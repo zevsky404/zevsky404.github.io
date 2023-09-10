@@ -149,58 +149,71 @@ function explicitFilter(types, generations, legendary, data){
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.length === 0 && (legendary[2] || legendary.length === 0)){
             card.parentElement.style.display = "flex";
+            enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.length === 0 && (legendary[2] || legendary.length === 0)) {
             card.parentElement.style.display = "flex";
+            disableCheckboxes();
         }
         else if (types.length === 0 && generations.includes(pokemon.generation) && (legendary[2] || legendary.length === 0)){
             card.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.includes(pokemon.generation) && (legendary[2] || legendary.length === 0)){
             card.parentElement.style.display = "flex";
+            enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.includes(pokemon.generation) && (legendary[2] || legendary.length === 0)) {
             card.parentElement.style.display = "flex";
+            disableCheckboxes();
         }
         else if (types.length === 0 && generations.length === 0 && legendary[0] && pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.length === 0 && legendary[0] && pokemon.isLegendary){
             card.parentElement.style.display = "flex";
+            enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.length === 0 && legendary[0] && pokemon.isLegendary) {
             card.parentElement.style.display = "flex";
+            disableCheckboxes();
         }
         else if (types.length === 0 && generations.includes(pokemon.generation) && legendary[0] && pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.includes(pokemon.generation) && legendary[0] && pokemon.isLegendary){
             card.parentElement.style.display = "flex";
+            enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.includes(pokemon.generation) && legendary[0] && pokemon.isLegendary) {
             card.parentElement.style.display = "flex";
+            disableCheckboxes();
         }
         else if (types.length === 0 && generations.length === 0 && legendary[1] && !pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.length === 0 && legendary[1] && !pokemon.isLegendary){
             card.parentElement.style.display = "flex";
+            enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.length === 0 && legendary[1] && !pokemon.isLegendary) {
             card.parentElement.style.display = "flex";
+            disableCheckboxes();
         }
         else if (types.length === 0 && generations.includes(pokemon.generation) && legendary[1] && !pokemon.isLegendary){
             card.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.includes(pokemon.generation) && legendary[1] && !pokemon.isLegendary){
             card.parentElement.style.display = "flex";
+            enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.includes(pokemon.generation) && legendary[1] && !pokemon.isLegendary) {
             card.parentElement.style.display = "flex";
-        }
+            disableCheckboxes();
+        } 
         else {
             card.parentElement.style.display = "none";
         }
+        
     }
 }
 
@@ -353,23 +366,21 @@ function scaleElementsBySpace() {
 }
 
 function disableCheckboxes() {
-    let allCheckboxes = document.querySelectorAll("input[type=checkbox][name=type-selector]");
-    let selectedTypes = [];
-
-    allCheckboxes.forEach((checkbox) => {
-        checkbox.addEventListener("change",  () => {
-            selectedTypes = Array.from(allCheckboxes)
-                .filter(element => element.checked);
-        });
-    });
-
-    if (selectedTypes.length >= 2) {
-        for (let box in allCheckboxes) {
-            if (!box.checked) {
-                box.disabled = true;
-            }
+    let typeCheckboxes = document.querySelectorAll("input[type=checkbox][name=type-selector]");
+    typeCheckboxes.forEach((checkbox) => {
+        if (!checkbox.checked){
+            checkbox.disabled = true;
         }
-    }
+    })
+}
+
+function enableCheckboxes() {
+    let typeCheckboxes = document.querySelectorAll("input[type=checkbox][name=type-selector]");
+    typeCheckboxes.forEach((checkbox) => {
+        if (!checkbox.checked){
+            checkbox.disabled = false;
+        }
+    })
 }
 
 getCompletePokedexData.then(function (data) {
@@ -422,10 +433,8 @@ getCompletePokedexData.then(function (data) {
     let typeCheckboxes = document.querySelectorAll("input[type=checkbox][name=type-selector]");
     let genCheckboxes =  document.querySelectorAll("input[type=checkbox][name=generation-selector]");
     let legendRadio = document.querySelectorAll("input[type=radio][name=legendary-selector]");
-    //let type2Checkboxes = document.querySelectorAll("input[type=checkbox][name=type2-selector]");
 
     let selectedTypes = [];
-    let selectedTypes2 = [];
     let selectedGens = [];
     let legendary = [];
     let explicit = false;
@@ -458,15 +467,6 @@ getCompletePokedexData.then(function (data) {
         });
     });
 
-    /*type2Checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener("change", () => {
-            selectedTypes2 = Array.from(type2Checkboxes)
-                .filter(element => element.checked)
-                .map(element => element.nextElementSibling.innerText.toLowerCase());
-            filter(selectedTypes, selectedGens, legendary, data, explicit);
-            scaleElementsBySpace();
-        });
-    });*/
 
     let hpFilter = document.getElementById("hp-filter");
     let attackFilter = document.getElementById("attack-filter");
