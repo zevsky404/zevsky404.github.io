@@ -241,13 +241,15 @@ body {
     margin-bottom: 0;
 }
 
-.bulletIcon {
+.bullet-icon {
     width: 10px;
     height: 10px;
+    margin: 5px;
 }
 
-.legendBullet {
+.legend-bullet {
     display: flex;
+    align-items: center;
 }
 
 .legend-menu {
@@ -322,4 +324,52 @@ input[type=checkbox][disabled] + label {
     font-style: italic;
     font-weight: lighter;
     padding: 5px;
+}
+
+/* Tooltip container */
+.custom-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.custom-tooltip .tooltip-text {
+    visibility: hidden;
+    width: fit-content;
+    height: fit-content;
+    font-size: small;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -25px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.custom-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.custom-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
 }

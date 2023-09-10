@@ -100,27 +100,43 @@ export function buildCard(pokemon) {
     cardBody.style.display = "flex";
     cardBody.style.justifyContent = "center";
 
+    let tooltip = document.createElement("div");
+    tooltip.className = "custom-tooltip";
+    let tooltipText = document.createElement("span");
+    tooltipText.className = "tooltip-text";
+    tooltipText.innerText = pokemon.type1;
+
     let iconHolderType1 = document.createElement("div");
     iconHolderType1.className = `icon ${pokemon.type1}`;
 
     let iconImageType1 = document.createElement("img");
     iconImageType1.src = `/resources/images/icons/${pokemon.type1}.svg`
 
+    tooltip.appendChild(tooltipText);
+    tooltip.appendChild(iconHolderType1);
     iconHolderType1.appendChild(iconImageType1);
-    cardBody.appendChild(iconHolderType1);
+    cardBody.appendChild(tooltip);
     cardDiv.appendChild(cardTitle);
     cardDiv.appendChild(image);
     cardDiv.appendChild(cardBody);
 
     if (pokemon.type2) {
+        let tooltip = document.createElement("div");
+        tooltip.className = "custom-tooltip";
+        let tooltipText = document.createElement("span");
+        tooltipText.className = "tooltip-text";
+        tooltipText.innerText = pokemon.type2;
+
         let iconHolderType2 = document.createElement("div");
         iconHolderType2.className = `icon ${pokemon.type2}`;
 
         let iconImageType2 = document.createElement("img");
         iconImageType2.src = `/resources/images/icons/${pokemon.type2}.svg`
 
+        tooltip.appendChild(tooltipText);
+        tooltip.appendChild(iconHolderType2);
         iconHolderType2.appendChild(iconImageType2);
-        cardBody.appendChild(iconHolderType2);
+        cardBody.appendChild(tooltip);
     }
 
     return cardDiv;
