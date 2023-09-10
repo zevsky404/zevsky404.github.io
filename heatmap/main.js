@@ -219,98 +219,10 @@ function explicitFilter(types, generations, legendary, data){
 
 function toggleTypeFiltering(explicit) {
     let checkbox = document.getElementById("type-toggle-checkbox");
-    let typeListing1 = document.getElementById("type-listing");
-    /*let typeListing2;
-    let parent = document.getElementById("type-collapse");*/
-
     if (checkbox.checked) {
-        /*parent.classList.add("custom-flex");
-        typeListing2 = document.createElement("div");
-        typeListing2.classList.add("btn-toggle-nav");
-        typeListing2.classList.add("list-unstyled");
-        typeListing2.classList.add("fw-normal");
-        typeListing2.classList.add("pb-1");
-        typeListing2.classList.add("small");
-        typeListing2.id = "type-listing-2";
-        typeListing2.innerHTML = "<div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"normal2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"normal-checkbox\">Normal</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"fire2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"fire-checkbox\">Fire</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"water2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"water-checkbox\">Water</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"grass2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"grass-checkbox\">Grass</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"flying2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"flying-checkbox\">Flying</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"fighting2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"fighting-checkbox\">Fighting</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"poison2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"poison-checkbox\">Poison</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"electric2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"electric-checkbox\">Electric</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"ground2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"ground-checkbox\">Ground</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"rock2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"rock-checkbox\">Rock</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"psychic2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"psychic-checkbox\">Psychic</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"ice2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"ice-checkbox\">Ice</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"bug2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"bug-checkbox\">Bug</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"ghost2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"ghost-checkbox\">Ghost</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"steel2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"steel-checkbox\">Steel</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"dragon2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"dragon-checkbox\">Dragon</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"dark2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"dark-checkbox\">Dark</label>\n" +
-            "                    </div>\n" +
-            "                    <div class=\"form-check\">\n" +
-            "                        <input class=\"form-check-input\" type=\"checkbox\" id=\"fairy2-checkbox\" name=\"type2-selector\">\n" +
-            "                        <label for=\"fairy-checkbox\">Fairy</label>\n" +
-            "                    </div>"
-
-        parent.appendChild(typeListing2);*/
         return explicit = true;
     }
-    else /*if (parent.children[1])*/ {
-        /*parent.children[1].remove();
-        parent.classList.remove("custom-flex");*/
+    else {
         return explicit = false;
     }
 }
