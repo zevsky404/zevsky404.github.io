@@ -112,6 +112,74 @@ export function buildOverview(pokemonName) {
         rightView.appendChild(generalInfo);
         mainBody.appendChild(rightView);
 
+        buildStatDiagram(pokemon.name);
+
+    });
+}
+
+function buildStatDiagram(pokemonName) {
+    getCompletePokedexData.then((data) => {
+        const margin = {top: 10, right: 30, bottom: 40, left: 100}
+        const width = 460 - margin.left - margin.right
+        const height = 500 - margin.top - margin.bottom;
+
+        let pokemon = findPokemonByName(pokemonName, data);
+        pokemon = buildPokemon(pokemon);
+
+        let pokemonStatData = [{key: "Health Points", value: pokemon.stats.hp}, {key: "Attack", value: pokemon.stats.attack},
+            {key: "Special Attack", value: pokemon.stats.sp_attack},
+            {key: "Defense", value: pokemon.stats.defense}, {key: "Special Defense", value: pokemon.stats.sp_defense}, {key: "Speed", value: pokemon.stats.speed}]
+
+        let svg = d3.select("#diagram")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        let xAxis = d3.scaleLinear()
+            .domain([0, 300])
+            .range([0, width]);
+
+        let yAxis = d3.scaleBand()
+            .range([0, height])
+            .domain(["Health Points", "Attack", "Special Attack", "Defense", "Special Defense", "Speed"])
+            .padding(1);
+
+        svg.append("g")
+            .attr("transform", `translate(0, ${height})`)
+            .call(d3.axisBottom(xAxis))
+            .selectAll("text")
+            .attr("transform", "translate(-10,0) rotate(-45)")
+            .style("text-anchor", "end");
+
+        svg.append("g")
+            .call(d3.axisLeft(yAxis));
+
+        svg.selectAll("dataLine")
+            .data(pokemonStatData)
+            .enter()
+            .append("line")
+            .attr("x1", (d) => {return xAxis(d.value)})
+            .attr("x2", xAxis(0))
+            .attr("y1", (d) => {return yAxis(d.key)})
+            .attr("y2", (d) => {return yAxis(d.key)})
+            .attr("stroke", "black");
+
+        svg.selectAll("endLineCircle")
+            .data(pokemonStatData)
+            .enter()
+            .append("circle")
+            .attr("cx", (d) => {return xAxis(d.value)})
+            .attr("cy", (d) => {return yAxis(d.key)})
+            .attr("r", 3)
+            .attr("fill", "none")
+            .attr("stroke", "black")
+
+        console.log(yAxis("Health Points"))
+
+
+
 
     });
 }
