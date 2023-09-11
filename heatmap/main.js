@@ -246,34 +246,6 @@ function toggleTypeFiltering(typeCheckboxes, explicit) {
     
 }
 
-/*function createContentForLegend(option) {
-    let container = document.getElementById("legend-wrapper");
-
-    switch (option) {
-        case "weakness":
-            let multipliers = ["2.0", "1.0", "0.5", "0.25"];
-            let colours = ["#ca0020","#ffffff","#bababa","#404040"];
-
-
-            for (let i = 0; i < multipliers.length; ++i) {
-                let legendBullet = document.createElement("div");
-                legendBullet.classList.add("legend-bullet");
-
-                let bulletIcon = document.createElement("div");
-                bulletIcon.classList.add("bulletIcon")
-                bulletIcon.style.backgroundColor = colours[i];
-
-                let bulletText = document.createElement("div");
-                bulletText.innerText = multipliers[i];
-
-                legendBullet.appendChild(bulletIcon);
-                legendBullet.appendChild(bulletText);
-
-                container.appendChild(legendBullet);
-            }
-    }
-}*/
-
 function scaleElementsBySpace() {
     const visibleElements = document.querySelectorAll(".heatmap-icon-container[style='display: flex;']");
     let newSize;
@@ -408,7 +380,6 @@ getCompletePokedexData.then(function (data) {
             legendary = [legendRadio[0].checked, legendRadio[1].checked, legendRadio[2].checked];
             filter(selectedTypes, selectedGens, legendary, data, explicit);
             scaleElementsBySpace();
-            console.log(selectedTypes, selectedGens, legendary)
         });
     });
 
@@ -459,7 +430,6 @@ getCompletePokedexData.then(function (data) {
     let fairyWeakness = document.getElementById("fairy-weakness");
 
     normalWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("normal", data));
-    //normalWeakness.addEventListener("click", () => createContentForLegend("weakness"));
     fireWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("fire", data));
     waterWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("water", data));
     grassWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("grass", data));
