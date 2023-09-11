@@ -18,6 +18,8 @@ export function buildOverview(pokemonName) {
         pokemonImage.src = pokemon.image;
         leftView.appendChild(pokemonImage);
 
+        let card = document.createElement("div");
+        card.className = "card";
         let shortDescription = document.createElement("div");
         shortDescription.classList.add("pokemon-short-description");
         let pokemonTitle = document.createElement("span");
@@ -109,7 +111,12 @@ export function buildOverview(pokemonName) {
         generalInfo.appendChild(weaknessSpan);
         generalInfo.appendChild(resistanceSpan);
 
-        rightView.appendChild(generalInfo);
+        let infoDiv = document.createElement("div");
+        infoDiv.className = "full-description text-wrap";
+        infoDiv.appendChild(generalInfo);
+        infoDiv.appendChild(levelBreed);
+
+        rightView.appendChild(infoDiv);
         mainBody.appendChild(rightView);
 
         buildStatDiagram(pokemon.name);
@@ -120,7 +127,7 @@ export function buildOverview(pokemonName) {
 function buildStatDiagram(pokemonName) {
     getCompletePokedexData.then((data) => {
         const margin = {top: 10, right: 30, bottom: 40, left: 100}
-        const width = 460 - margin.left - margin.right
+        const width = 600 - margin.left - margin.right
         const height = 500 - margin.top - margin.bottom;
 
         let pokemon = findPokemonByName(pokemonName, data);

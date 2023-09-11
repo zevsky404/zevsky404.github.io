@@ -3,23 +3,29 @@ main {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: stretch;
+    margin: 20px;
 }
 
 div {
     border: 1px solid black;
 }
 
+
 .nav-item {
     display: flex;
 }
 
 .left-view {
-    height: 100%;
-    width: 40%;
+    height: calc(100vh - 97px - 40px);
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
 }
 
 .pokemon-short-description {
@@ -37,6 +43,7 @@ div {
 .icon {
     width: 50px;
     height: 50px;
+    margin: 10px;
 }
 
 .pokemon-title {
@@ -49,16 +56,42 @@ div {
     font-style: italic;
 }
 
+.pokemon-short-description {
+    margin: 20px;
+}
+
 .right-view {
-    height: 100%;
-    width: 60%;
+    height: calc(100vh - 97px - 40px);
+    width: 70%;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
 }
 
 .general-information {
     display: flex;
     flex-direction: column;
+    padding: 10px;
+}
+
+.gen-info-span {
+    margin: 10px;
+    max-width: 100%;
+}
+
+.leveling-breeding-information {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.lvl-exp-info {
+    margin: 10px;
+}
+
+img {
+    width: 80%;
 }
