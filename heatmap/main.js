@@ -217,17 +217,37 @@ function explicitFilter(types, generations, legendary, data){
     }
 }
 
-function toggleTypeFiltering(explicit) {
+function toggleTypeFiltering(typeCheckboxes, explicit) {
+    let allCards = document.getElementsByClassName("card");
+    for (let card of allCards) {
+         card.parentElement.style.display = "flex";
+    }
+
+    typeCheckboxes.forEach((checkbox) => {
+        if (checkbox.disabled){
+            checkbox.disabled = false;
+        }
+        if (checkbox.checked){
+            checkbox.checked = false;
+        }
+    });
+    
+    scaleElementsBySpace();
+    
     let checkbox = document.getElementById("type-toggle-checkbox");
+    
     if (checkbox.checked) {
         return explicit = true;
     }
     else {
         return explicit = false;
-    }
+    };
+
+    
+    
 }
 
-function createContentForLegend(option) {
+/*function createContentForLegend(option) {
     let container = document.getElementById("legend-wrapper");
 
     switch (option) {
@@ -253,7 +273,7 @@ function createContentForLegend(option) {
                 container.appendChild(legendBullet);
             }
     }
-}
+}*/
 
 function scaleElementsBySpace() {
     const visibleElements = document.querySelectorAll(".heatmap-icon-container[style='display: flex;']");
@@ -293,6 +313,34 @@ function enableCheckboxes() {
             checkbox.disabled = false;
         }
     })
+}
+
+function resetOptions(explicit) {
+
+    if (explicit) {
+        explicit = false;
+    }
+    let checkboxes = document.querySelectorAll("input[type=checkbox]");
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.disabled){
+            checkbox.disabled = false;
+        }
+        if (checkbox.checked){
+            checkbox.checked = false;
+        }
+    });
+
+    let radiobttn = document.querySelectorAll("input[type=radio]");
+    radiobttn.item(2).checked = true;
+
+    let allCards = document.getElementsByClassName("card");
+    for (let card of allCards) {
+        card.parentElement.style.display = 'flex';
+        card.style.backgroundColor = "transparent";
+    }
+    scaleElementsBySpace()
+
+    
 }
 
 getCompletePokedexData.then(function (data) {
@@ -416,7 +464,7 @@ getCompletePokedexData.then(function (data) {
     let fairyWeakness = document.getElementById("fairy-weakness");
 
     normalWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("normal", data));
-    normalWeakness.addEventListener("click", () => createContentForLegend("weakness"));
+    //normalWeakness.addEventListener("click", () => createContentForLegend("weakness"));
     fireWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("fire", data));
     waterWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("water", data));
     grassWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("grass", data));
@@ -444,13 +492,9 @@ getCompletePokedexData.then(function (data) {
 
     let typeToggle = document.getElementById("type-toggle-checkbox");
     typeToggle.addEventListener("change", () => {
-        explicit = toggleTypeFiltering(explicit);
-        selectedTypes = Array.from(typeCheckboxes)
-                .filter(element => element.checked)
-                .map(element => element.nextElementSibling.innerText.toLowerCase());
-            filter(selectedTypes, selectedGens, legendary, data, explicit);
-            scaleElementsBySpace();
+        explicit = toggleTypeFiltering(typeCheckboxes, explicit);
     });
+
+    let resetBttn = document.getElementById("reset");
+    resetBttn.addEventListener("click", () => resetOptions(explicit));
 });
-
-
