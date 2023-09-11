@@ -18,6 +18,8 @@ export function buildOverview(pokemonName) {
         pokemonImage.src = pokemon.image;
         leftView.appendChild(pokemonImage);
 
+        let card = document.createElement("div");
+        card.className = "card";
         let shortDescription = document.createElement("div");
         shortDescription.classList.add("pokemon-short-description");
         let pokemonTitle = document.createElement("span");
@@ -59,17 +61,21 @@ export function buildOverview(pokemonName) {
         let generalInfo = document.createElement("div");
         generalInfo.classList.add("general-information");
 
+        let generalInfoHeading = document.createElement("h4");
+        generalInfoHeading.className = "gen-info-heading";
+        generalInfoHeading.innerText = "General Information";
+
         let spanGen = document.createElement("span");
         spanGen.className = "gen-info-span";
         spanGen.innerText = `From Generation ${pokemon.generation}`;
 
         let spanWeight = document.createElement("span");
         spanWeight.className = "gen-info-span";
-        spanWeight.innerText = `Weight in kg: ${pokemon.weight}`;
+        spanWeight.innerText = `Weight: ${pokemon.weight}kg`;
 
         let spanHeight = document.createElement("span");
         spanHeight.className = "gen-info-span";
-        spanHeight.innerText = `Height in m: ${pokemon.height}`;
+        spanHeight.innerText = `Height: ${pokemon.height}m`;
 
         let spanAbilities = document.createElement("span");
         spanAbilities.className = "gen-info-span";
@@ -102,6 +108,31 @@ export function buildOverview(pokemonName) {
         }
         resistanceSpan.innerText = `Is especially resistant against: ${resistanceList.slice(0,-2)}`;
 
+        let levelBreed = document.createElement("div");
+        levelBreed.className = "leveling-breeding-information";
+
+        let levelBreedHeading = document.createElement("h4");
+        levelBreedHeading.className = "leveling-breeding-heading";
+        levelBreedHeading.innerText = "Leveling and Breeding Information";
+
+        let expGrowth = document.createElement("span");
+        expGrowth.className = "lvl-exp-info";
+        expGrowth.innerText = `Needs ${pokemon.experienceGrowth} experience points to get to level 100.`;
+
+        let catchRate = document.createElement("span");
+        catchRate.className = "lvl-exp-info";
+        catchRate.innerText = `Capturing Rate specific for this species: ${pokemon.captureRate}`;
+
+        let eggSteps = document.createElement("span");
+        eggSteps.className = "lvl-exp-info";
+        eggSteps.innerText = `Steps needed to hatch egg: ${pokemon.baseEggSteps}`;
+
+        levelBreed.appendChild(levelBreedHeading);
+        levelBreed.appendChild(expGrowth);
+        levelBreed.appendChild(catchRate);
+        levelBreed.appendChild(eggSteps);
+
+        generalInfo.appendChild(generalInfoHeading);
         generalInfo.appendChild(spanGen);
         generalInfo.appendChild(spanWeight);
         generalInfo.appendChild(spanHeight);
@@ -109,7 +140,12 @@ export function buildOverview(pokemonName) {
         generalInfo.appendChild(weaknessSpan);
         generalInfo.appendChild(resistanceSpan);
 
-        rightView.appendChild(generalInfo);
+        let infoDiv = document.createElement("div");
+        infoDiv.className = "full-description text-wrap";
+        infoDiv.appendChild(generalInfo);
+        infoDiv.appendChild(levelBreed);
+
+        rightView.appendChild(infoDiv);
         mainBody.appendChild(rightView);
 
         buildStatDiagram(pokemon.name);
@@ -120,7 +156,7 @@ export function buildOverview(pokemonName) {
 function buildStatDiagram(pokemonName) {
     getCompletePokedexData.then((data) => {
         const margin = {top: 10, right: 30, bottom: 40, left: 100}
-        const width = 460 - margin.left - margin.right
+        const width = 600 - margin.left - margin.right
         const height = 500 - margin.top - margin.bottom;
 
         let pokemon = findPokemonByName(pokemonName, data);
@@ -176,10 +212,7 @@ function buildStatDiagram(pokemonName) {
             .attr("fill", "none")
             .attr("stroke", "black")
 
-        console.log(yAxis("Health Points"))
-
-
-
+        console.log(yAxis("Health Points"));
 
     });
 }

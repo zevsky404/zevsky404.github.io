@@ -31,8 +31,8 @@ function colourHeatmapBy(stat, interpolator, data) {
 
 function colourHeatmapByWeaknessAgainst(type, data) {
     const colour = d3.scaleOrdinal()
-        .range(["#ca0020","#ffffff","#bababa","#404040"])
-        .domain(["2.0", "1", "0.5", "0.25"]);
+        .range(["#ca0020", "#eeeeee", "#4BDC35","#3E9031","#404040"])
+        .domain(["2.0", "1", "0.5", "0.25", "0"]);
 
     let allCards = document.getElementsByClassName("card");
 
