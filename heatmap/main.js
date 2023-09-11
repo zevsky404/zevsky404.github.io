@@ -314,11 +314,8 @@ function enableCheckboxes() {
     })
 }
 
-function resetOptions(explicit) {
+function resetOptions() {
 
-    if (explicit) {
-        explicit = false;
-    }
     let checkboxes = document.querySelectorAll("input[type=checkbox]");
     checkboxes.forEach((checkbox) => {
         if (checkbox.disabled){
@@ -338,8 +335,6 @@ function resetOptions(explicit) {
         card.style.backgroundColor = "transparent";
     }
     scaleElementsBySpace()
-
-    
 }
 
 getCompletePokedexData.then(function (data) {
@@ -500,5 +495,10 @@ getCompletePokedexData.then(function (data) {
     });
 
     let resetBttn = document.getElementById("reset");
-    resetBttn.addEventListener("click", () => resetOptions(explicit));
+    resetBttn.addEventListener("click", () => {
+        resetOptions();
+        explicit = false;
+        selectedGens = [];
+        selectedTypes = [];
+    });
 });
