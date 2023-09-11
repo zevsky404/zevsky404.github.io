@@ -231,8 +231,7 @@ function toggleTypeFiltering(typeCheckboxes, explicit) {
             checkbox.checked = false;
         }
     });
-    
-    scaleElementsBySpace();
+
     
     let checkbox = document.getElementById("type-toggle-checkbox");
     
@@ -414,6 +413,7 @@ getCompletePokedexData.then(function (data) {
             legendary = [legendRadio[0].checked, legendRadio[1].checked, legendRadio[2].checked];
             filter(selectedTypes, selectedGens, legendary, data, explicit);
             scaleElementsBySpace();
+            console.log(selectedTypes, selectedGens, legendary)
         });
     });
 
@@ -493,6 +493,10 @@ getCompletePokedexData.then(function (data) {
     let typeToggle = document.getElementById("type-toggle-checkbox");
     typeToggle.addEventListener("change", () => {
         explicit = toggleTypeFiltering(typeCheckboxes, explicit);
+        selectedTypes = []
+        filter(selectedTypes, selectedGens, legendary, data, explicit);
+        scaleElementsBySpace();
+
     });
 
     let resetBttn = document.getElementById("reset");
