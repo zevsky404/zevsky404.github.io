@@ -3,6 +3,13 @@ import {buildPokemon, findPokemonByName, getCompletePokedexData} from "../resour
 
 export function buildOverview(pokemonName) {
     getCompletePokedexData.then((data) => {
+        const eggMax = Math.max(...data.map(entry => parseFloat(entry["base_egg_steps"])).filter(entry => !isNaN(entry)));
+        const catchMax = Math.max(...data.map(entry => parseFloat(entry["capture_rate"])).filter(entry => !isNaN(entry)));
+        const growthMax = Math.max(...data.map(entry => parseFloat(entry["experience_growth"])).filter(entry => !isNaN(entry)));
+        const heightMax = Math.max(...(data.map(entry => parseFloat(entry["height_m"])).filter(entry => !isNaN(entry))));
+        const weightMax = Math.max(...data.map(entry => parseFloat(entry["weight_kg"])).filter(entry => !isNaN(entry)));
+
+
         const pokemonFromData = findPokemonByName(pokemonName, data);
         const pokemon = buildPokemon(pokemonFromData);
         const mainBody = document.getElementById("overview");
@@ -77,6 +84,20 @@ export function buildOverview(pokemonName) {
         spanHeight.className = "gen-info-span";
         spanHeight.innerText = `Height: ${pokemon.height}m`;
 
+        let heightBorder = document.createElement("div");
+        heightBorder.className = "gen-info-border";
+        
+        let weightBorder =document.createElement("div");
+        weightBorder.className = "gen-info-border";
+
+        let heightBar = document.createElement("div");
+        heightBar.className = "gen-info-bar";
+        heightBar.style.width = `${pokemon.height / heightMax * 100}%`;
+
+        let weightBar = document.createElement("div");
+        weightBar.className = "gen-info-bar";
+        weightBar.style.width = `${pokemon.weight / weightMax * 100}%`;
+
         let spanAbilities = document.createElement("span");
         spanAbilities.className = "gen-info-span";
         let abilitiesArray = pokemon.abilities.split(",");
@@ -127,15 +148,48 @@ export function buildOverview(pokemonName) {
         eggSteps.className = "lvl-exp-info";
         eggSteps.innerText = `Steps needed to hatch egg: ${pokemon.baseEggSteps}`;
 
+        let growthBorder = document.createElement("div");
+        growthBorder.className = "lvl-exp-border";
+
+        let catchBorder = document.createElement("div");
+        catchBorder.className = "lvl-exp-border";
+
+        let eggBorder = document.createElement("div");
+        eggBorder.className = "lvl-exp-border";
+
+        let growthBar = document.createElement("div");
+        growthBar.className = "lvl-exp-bar";
+        growthBar.style.width = `${pokemon.experienceGrowth / growthMax * 100}%`;
+
+        let catchBar = document.createElement("div");
+        catchBar.className = "lvl-exp-bar";
+        catchBar.style.width = `${pokemon.captureRate / catchMax * 100}%`;
+
+        let eggBar = document.createElement("div");
+        eggBar.className = "lvl-exp-bar";
+        eggBar.style.width = `${pokemon.baseEggSteps / eggMax * 100}%`;
+
+        weightBorder.appendChild(weightBar);
+        heightBorder.appendChild(heightBar);
+
+        growthBorder.appendChild(growthBar);
+        catchBorder.appendChild(catchBar);
+        eggBorder.appendChild(eggBar);
+        
         levelBreed.appendChild(levelBreedHeading);
         levelBreed.appendChild(expGrowth);
+        levelBreed.appendChild(growthBorder);
         levelBreed.appendChild(catchRate);
+        levelBreed.appendChild(catchBorder);
         levelBreed.appendChild(eggSteps);
+        levelBreed.appendChild(eggBorder);
 
         generalInfo.appendChild(generalInfoHeading);
         generalInfo.appendChild(spanGen);
         generalInfo.appendChild(spanWeight);
+        generalInfo.appendChild(weightBorder);
         generalInfo.appendChild(spanHeight);
+        generalInfo.appendChild(heightBorder);
         generalInfo.appendChild(spanAbilities);
         generalInfo.appendChild(weaknessSpan);
         generalInfo.appendChild(resistanceSpan);

@@ -6,8 +6,6 @@ main {
     margin: 20px;
 }
 
-
-
 .nav-item {
     display: flex;
 }
@@ -78,6 +76,22 @@ main {
     max-width: 100%;
 }
 
+.gen-info-border {
+    border-color: rgb(39, 39, 39);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 7px;
+    margin-left: 10px;
+    width: 70%;
+    height: 10px;
+}
+
+.gen-info-bar {
+    background-color:rgb(81, 154, 244);
+    height: 100%;
+    border-radius: inherit;
+}
+
 .leveling-breeding-information {
     display: flex;
     flex-direction: column;
@@ -86,6 +100,22 @@ main {
 
 .lvl-exp-info {
     margin: 10px;
+}
+
+.lvl-exp-border {
+    border-color: rgb(39, 39, 39);
+    border-width: 1px;
+    border-radius: 7px;
+    border-style: solid;
+    margin-left: 10px;
+    width: 70%;
+    height: 10px;
+}
+
+.lvl-exp-bar {
+    background-color: rgb(173, 244, 81);   
+    height: 100%;
+    border-radius: inherit;
 }
 
 img {
