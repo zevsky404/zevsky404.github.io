@@ -8,8 +8,9 @@ export function buildOverview(pokemonName) {
         const growthMax = Math.max(...data.map(entry => parseFloat(entry["experience_growth"])).filter(entry => !isNaN(entry)));
         const heightMax = Math.max(...(data.map(entry => parseFloat(entry["height_m"])).filter(entry => !isNaN(entry))));
         const weightMax = Math.max(...data.map(entry => parseFloat(entry["weight_kg"])).filter(entry => !isNaN(entry)));
+        const statsMax = Math.max(...data.map(entry => parseFloat(entry["base_total"])).filter(entry => !isNaN(entry)));
 
-        const traficLight = d3.scaleSequential()
+        const trafficLightPercentage = d3.scaleSequential()
                         .interpolator(d3.interpolateRgbBasis(["red", "yellow", "rgb(173, 244, 81)"]))
                         .domain([1, 100]);
 
@@ -96,12 +97,12 @@ export function buildOverview(pokemonName) {
         let heightBar = document.createElement("div");
         heightBar.className = "gen-info-bar";
         heightBar.style.width = `${pokemon.height / heightMax * 100}%`;
-        heightBar.style.backgroundColor = traficLight(pokemon.height / heightMax * 100);
+        heightBar.style.backgroundColor = trafficLightPercentage(pokemon.height / heightMax * 100);
 
         let weightBar = document.createElement("div");
         weightBar.className = "gen-info-bar";
         weightBar.style.width = `${pokemon.weight / weightMax * 100}%`;
-        weightBar.style.backgroundColor = traficLight(pokemon.weight / weightMax * 100);
+        weightBar.style.backgroundColor = trafficLightPercentage(pokemon.weight / weightMax * 100);
 
         let spanAbilities = document.createElement("span");
         spanAbilities.className = "gen-info-span";
@@ -162,24 +163,36 @@ export function buildOverview(pokemonName) {
         let eggBorder = document.createElement("div");
         eggBorder.className = "lvl-exp-border";
 
+        let statsBorder = document.createElement("div");
+        statsBorder.className = "base-stat-border";
+
         let growthBar = document.createElement("div");
         growthBar.className = "lvl-exp-bar";
         growthBar.style.width = `${pokemon.experienceGrowth / growthMax * 100}%`;
-        growthBar.style.backgroundColor = traficLight(pokemon.experienceGrowth / growthMax * 100);
+        growthBar.style.backgroundColor = trafficLightPercentage(pokemon.experienceGrowth / growthMax * 100);
 
         let catchBar = document.createElement("div");
         catchBar.className = "lvl-exp-bar";
         catchBar.style.width = `${pokemon.captureRate / catchMax * 100}%`;
-        catchBar.style.backgroundColor = traficLight(pokemon.captureRate / catchMax * 100);
+        catchBar.style.backgroundColor = trafficLightPercentage(pokemon.captureRate / catchMax * 100);
 
         let eggBar = document.createElement("div");
         eggBar.className = "lvl-exp-bar";
         eggBar.style.width = `${pokemon.baseEggSteps / eggMax * 100}%`;
-        eggBar.style.backgroundColor = traficLight(pokemon.baseEggSteps / eggMax * 100);
+        eggBar.style.backgroundColor = trafficLightPercentage(pokemon.baseEggSteps / eggMax * 100);
+
+        let baseStatDiv = document.createElement("div");
+        baseStatDiv.className = "base-stats";
+        let baseStatText = document.createElement("span");
+        baseStatText.innerText = "Total Base Stats: ";
+
+        let baseStatsBar = document.createElement("div");
+        baseStatsBar.className = "base-stat-bar";
+        baseStatsBar.style.width = `${pokemon.stats.base_total / statsMax * 100}%`
+        baseStatsBar.style.backgroundColor = trafficLightPercentage(pokemon.stats.base_total / statsMax * 100);
 
         weightBorder.appendChild(weightBar);
         heightBorder.appendChild(heightBar);
-
         growthBorder.appendChild(growthBar);
         catchBorder.appendChild(catchBar);
         eggBorder.appendChild(eggBar);
@@ -212,6 +225,11 @@ export function buildOverview(pokemonName) {
 
         buildStatDiagram(pokemon.name);
 
+        baseStatDiv.appendChild(baseStatText);
+        baseStatDiv.appendChild(statsBorder);
+        statsBorder.appendChild(baseStatsBar);
+        statsDiagram.appendChild(baseStatDiv);
+
     });
 }
 
@@ -221,12 +239,19 @@ function buildStatDiagram(pokemonName) {
         const width = 600 - margin.left - margin.right
         const height = 500 - margin.top - margin.bottom;
 
+        const trafficLightAbsolute = d3.scaleSequential()
+            .interpolator(d3.interpolateRgbBasis(["red", "yellow", "rgb(173, 244, 81)"]))
+            .domain([0, 200]);
+
         let pokemon = findPokemonByName(pokemonName, data);
         pokemon = buildPokemon(pokemon);
 
-        let pokemonStatData = [{key: "Health Points", value: pokemon.stats.hp}, {key: "Attack", value: pokemon.stats.attack},
-            {key: "Special Attack", value: pokemon.stats.sp_attack},
-            {key: "Defense", value: pokemon.stats.defense}, {key: "Special Defense", value: pokemon.stats.sp_defense}, {key: "Speed", value: pokemon.stats.speed}]
+        let pokemonStatData = [{key: "Health Points", value: pokemon.stats.hp},
+            {key: "Attack", value: pokemon.stats.attack},
+            {key: "Sp. Attack", value: pokemon.stats.sp_attack},
+            {key: "Defense", value: pokemon.stats.defense},
+            {key: "Sp. Defense", value: pokemon.stats.sp_defense},
+            {key: "Speed", value: pokemon.stats.speed}]
 
         let svg = d3.select("#diagram")
             .append("svg")
@@ -241,7 +266,7 @@ function buildStatDiagram(pokemonName) {
 
         let yAxis = d3.scaleBand()
             .range([0, height])
-            .domain(["Health Points", "Attack", "Special Attack", "Defense", "Special Defense", "Speed"])
+            .domain(["Health Points", "Attack", "Sp. Attack", "Defense", "Sp. Defense", "Speed"])
             .padding(1);
 
         svg.append("g")
@@ -249,10 +274,13 @@ function buildStatDiagram(pokemonName) {
             .call(d3.axisBottom(xAxis))
             .selectAll("text")
             .attr("transform", "translate(-10,0) rotate(-45)")
-            .style("text-anchor", "end");
+            .style("text-anchor", "end")
+            .style("font-size", "16px");
 
         svg.append("g")
-            .call(d3.axisLeft(yAxis));
+            .call(d3.axisLeft(yAxis))
+            .selectAll("text")
+            .style("font-size", "15px");
 
         svg.selectAll("dataLine")
             .data(pokemonStatData)
@@ -262,17 +290,9 @@ function buildStatDiagram(pokemonName) {
             .attr("x2", xAxis(0))
             .attr("y1", (d) => {return yAxis(d.key)})
             .attr("y2", (d) => {return yAxis(d.key)})
-            .attr("stroke", "black");
-
-        svg.selectAll("endLineCircle")
-            .data(pokemonStatData)
-            .enter()
-            .append("circle")
-            .attr("cx", (d) => {return xAxis(d.value)})
-            .attr("cy", (d) => {return yAxis(d.key)})
-            .attr("r", 3)
-            .attr("fill", "none")
-            .attr("stroke", "black")
+            .attr("stroke", (d) => {return trafficLightAbsolute(d.value)})
+            .attr("stroke-width", "10px")
+            .attr("corner-radius", "5px");
 
         console.log(yAxis("Health Points"));
 

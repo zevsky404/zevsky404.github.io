@@ -116,6 +116,28 @@ main {
     border-radius: inherit;
 }
 
+.base-stats {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+
+}
+
+.base-stat-border {
+    border-color: rgb(39, 39, 39);
+    border-width: 1px;
+    border-radius: 7px;
+    border-style: solid;
+    margin-left: 10px;
+    width: 50%;
+    height: 10px;
+}
+
+.base-stat-bar {
+    height: 100%;
+    border-radius: inherit;
+}
+
 img {
     width: 80%;
 }
