@@ -26,12 +26,14 @@ function filterPokemonByName() {
         // takes entire title of card, converts it to lower case and splits it at the - to remove number
         const title = card.children[0].textContent
             .toLowerCase()
-            .split("-")[1];
+            //.split("-")[1];
+        console.log(card.classList[3].toLowerCase())
         let surroundingLink = card.parentElement;
 
-        if (!title.includes(input.value.toLowerCase())) {
+        if (!((title.includes(input.value.toLowerCase())) || (card.classList[3].toLowerCase().includes(input.value.toLowerCase())))) {
             surroundingLink.classList.add("hidden");
-        } else if (surroundingLink.classList.contains("hidden")) {
+        }
+        else if (surroundingLink.classList.contains("hidden")) {
             surroundingLink.classList.remove("hidden");
         }
     }
