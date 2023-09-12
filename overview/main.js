@@ -9,6 +9,9 @@ export function buildOverview(pokemonName) {
         const heightMax = Math.max(...(data.map(entry => parseFloat(entry["height_m"])).filter(entry => !isNaN(entry))));
         const weightMax = Math.max(...data.map(entry => parseFloat(entry["weight_kg"])).filter(entry => !isNaN(entry)));
 
+        const traficLight = d3.scaleSequential()
+                        .interpolator(d3.interpolateRgbBasis(["red", "yellow", "rgb(173, 244, 81)"]))
+                        .domain([1, 100]);
 
         const pokemonFromData = findPokemonByName(pokemonName, data);
         const pokemon = buildPokemon(pokemonFromData);
@@ -93,10 +96,12 @@ export function buildOverview(pokemonName) {
         let heightBar = document.createElement("div");
         heightBar.className = "gen-info-bar";
         heightBar.style.width = `${pokemon.height / heightMax * 100}%`;
+        heightBar.style.backgroundColor = traficLight(pokemon.height / heightMax * 100);
 
         let weightBar = document.createElement("div");
         weightBar.className = "gen-info-bar";
         weightBar.style.width = `${pokemon.weight / weightMax * 100}%`;
+        weightBar.style.backgroundColor = traficLight(pokemon.weight / weightMax * 100);
 
         let spanAbilities = document.createElement("span");
         spanAbilities.className = "gen-info-span";
@@ -160,14 +165,17 @@ export function buildOverview(pokemonName) {
         let growthBar = document.createElement("div");
         growthBar.className = "lvl-exp-bar";
         growthBar.style.width = `${pokemon.experienceGrowth / growthMax * 100}%`;
+        growthBar.style.backgroundColor = traficLight(pokemon.experienceGrowth / growthMax * 100);
 
         let catchBar = document.createElement("div");
         catchBar.className = "lvl-exp-bar";
         catchBar.style.width = `${pokemon.captureRate / catchMax * 100}%`;
+        catchBar.style.backgroundColor = traficLight(pokemon.captureRate / catchMax * 100);
 
         let eggBar = document.createElement("div");
         eggBar.className = "lvl-exp-bar";
         eggBar.style.width = `${pokemon.baseEggSteps / eggMax * 100}%`;
+        eggBar.style.backgroundColor = traficLight(pokemon.baseEggSteps / eggMax * 100);
 
         weightBorder.appendChild(weightBar);
         heightBorder.appendChild(heightBar);

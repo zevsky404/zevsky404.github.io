@@ -87,7 +87,6 @@ main {
 }
 
 .gen-info-bar {
-    background-color:rgb(81, 154, 244);
     height: 100%;
     border-radius: inherit;
 }
@@ -112,8 +111,7 @@ main {
     height: 10px;
 }
 
-.lvl-exp-bar {
-    background-color: rgb(173, 244, 81);   
+.lvl-exp-bar { 
     height: 100%;
     border-radius: inherit;
 }
