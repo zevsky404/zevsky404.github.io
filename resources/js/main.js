@@ -27,7 +27,6 @@ function filterPokemonByName() {
         const title = card.children[0].textContent
             .toLowerCase()
             //.split("-")[1];
-        console.log(card.classList[3].toLowerCase())
         let surroundingLink = card.parentElement;
 
         if (!((title.includes(input.value.toLowerCase())) || (card.classList[3].toLowerCase().includes(input.value.toLowerCase())))) {

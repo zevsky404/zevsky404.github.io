@@ -294,7 +294,5 @@ function buildStatDiagram(pokemonName) {
             .attr("stroke-width", "10px")
             .attr("corner-radius", "5px");
 
-        console.log(yAxis("Health Points"));
-
     });
 }

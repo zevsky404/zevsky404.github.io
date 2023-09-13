@@ -44,8 +44,24 @@ function colourHeatmapByWeaknessAgainst(type, data) {
     }
 }
 
+function colourHeatmapByHeight(data){
+    const filterValues = minMaxScaling("height_m", 0, 5, data);
+    const colour = d3.scaleSequential()
+        .interpolator(d3.interpolateBlues)
+        .domain([0.1, d3.max(filterValues)]);
+
+    let allCards = document.getElementsByClassName("card");
+
+    for (let card of allCards) {
+        const pokemonName = card.classList[1];
+        let pokemon = findPokemonByName(pokemonName, data);
+        pokemon = buildPokemon(pokemon);
+        card.style.backgroundColor = colour(pokemon.height);
+    }
+}
+
 function colourHeatmapByWeight(data){
-    const filterValues = minMaxScaling("weight_kg", 0, 300, data);
+    const filterValues = minMaxScaling("weight_kg", 0, 400, data);
     const colour = d3.scaleSequential()
         .interpolator(d3.interpolateOranges)
         .domain([d3.min(filterValues), d3.max(filterValues)]);
@@ -447,6 +463,10 @@ getCompletePokedexData.then(function (data) {
     dragonWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("dragon", data));
     darkWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("dark", data));
     fairyWeakness.addEventListener("click", () => colourHeatmapByWeaknessAgainst("fairy", data));
+
+    let height = document.getElementById("height");
+    height.addEventListener("click", () => colourHeatmapByHeight(data));
+    height.addEventListener("click", scaleElementsBySpace);
 
     let weight = document.getElementById("weight");
     weight.addEventListener("click", () => colourHeatmapByWeight(data));

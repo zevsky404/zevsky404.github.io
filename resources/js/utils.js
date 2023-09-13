@@ -164,10 +164,9 @@ export function minMaxScaling(column, newMin, newMax, data) {
     const maxValue = Math.max(...scaleValues);
     let scaledValues = [];
 
-    for (let value in scaleValues) {
-        let newValue = (value - minValue) / (maxValue - minValue) * (newMax - newMin) + newMin;
+    for (let value of scaleValues) {
+        let newValue = ((value - minValue) / (maxValue - minValue) * (newMax - newMin)) + newMin;
         scaledValues.push(newValue);
     }
-
     return scaledValues;
 }
