@@ -105,49 +105,49 @@ function filter(types, generations, legendary, data, explicit){
             pokemon = buildPokemon(pokemon);
 
             if (types.length === 0 && generations.length === 0 && (legendary[2] || legendary.length === 0)){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if (types.length === 0 && generations.length === 0 && legendary[0] && pokemon.isLegendary){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if (types.length === 0 && generations.length === 0 && legendary[1] && !pokemon.isLegendary) {
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
                                                                                 && (legendary[2] || legendary.length === 0)){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
                                                                                 && legendary[0] && pokemon.isLegendary){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if ((types.includes(pokemon.type1) || types.includes(pokemon.type2)) && generations.length === 0
                                                                                 && legendary[1] && !pokemon.isLegendary){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if (generations.includes(pokemon.generation) && types.length === 0 && (legendary[2] || legendary.length === 0)){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if (generations.includes(pokemon.generation) && types.length === 0 && legendary[0] && pokemon.isLegendary){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if (generations.includes(pokemon.generation) && types.length === 0 && legendary[1] && !pokemon.isLegendary){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if (generations.includes(pokemon.generation) &&
                 (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && (legendary[2] || legendary.length === 0)){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if (generations.includes(pokemon.generation) &&
                 (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && legendary[0] && pokemon.isLegendary){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else if (generations.includes(pokemon.generation) &&
                 (types.includes(pokemon.type1) || types.includes(pokemon.type2)) && legendary[1] && !pokemon.isLegendary){
-                card.parentElement.style.display = "flex";
+                card.parentElement.parentElement.style.display = "flex";
             }
             else{
-                card.parentElement.style.display = 'none';
+                card.parentElement.parentElement.style.display = 'none';
             }
         }
     }
@@ -161,73 +161,73 @@ function explicitFilter(types, generations, legendary, data){
         let pokemon = findPokemonByName(pokemonName, data);
         pokemon = buildPokemon(pokemon);
         if (types.length === 0 && generations.length === 0 && (legendary[2] || legendary.length === 0)){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.length === 0 && (legendary[2] || legendary.length === 0)){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.length === 0 && (legendary[2] || legendary.length === 0)) {
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             disableCheckboxes();
         }
         else if (types.length === 0 && generations.includes(pokemon.generation) && (legendary[2] || legendary.length === 0)){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.includes(pokemon.generation) && (legendary[2] || legendary.length === 0)){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.includes(pokemon.generation) && (legendary[2] || legendary.length === 0)) {
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             disableCheckboxes();
         }
         else if (types.length === 0 && generations.length === 0 && legendary[0] && pokemon.isLegendary){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.length === 0 && legendary[0] && pokemon.isLegendary){
             card.parentElement.style.display = "flex";
             enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.length === 0 && legendary[0] && pokemon.isLegendary) {
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             disableCheckboxes();
         }
         else if (types.length === 0 && generations.includes(pokemon.generation) && legendary[0] && pokemon.isLegendary){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.includes(pokemon.generation) && legendary[0] && pokemon.isLegendary){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.includes(pokemon.generation) && legendary[0] && pokemon.isLegendary) {
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             disableCheckboxes();
         }
         else if (types.length === 0 && generations.length === 0 && legendary[1] && !pokemon.isLegendary){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.length === 0 && legendary[1] && !pokemon.isLegendary){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.length === 0 && legendary[1] && !pokemon.isLegendary) {
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             disableCheckboxes();
         }
         else if (types.length === 0 && generations.includes(pokemon.generation) && legendary[1] && !pokemon.isLegendary){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
         }
         else if (types.length === 1 && types.includes(pokemon.type1) && (pokemon.type2 === "") && generations.includes(pokemon.generation) && legendary[1] && !pokemon.isLegendary){
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             enableCheckboxes();
         }
         else if (types.includes(pokemon.type1) && types.includes(pokemon.type2) && generations.includes(pokemon.generation) && legendary[1] && !pokemon.isLegendary) {
-            card.parentElement.style.display = "flex";
+            card.parentElement.parentElement.style.display = "flex";
             disableCheckboxes();
         } 
         else {
-            card.parentElement.style.display = "none";
+            card.parentElement.parentElement.style.display = "none";
         }
         
     }
@@ -236,7 +236,7 @@ function explicitFilter(types, generations, legendary, data){
 function toggleTypeFiltering(typeCheckboxes, explicit) {
     let allCards = document.getElementsByClassName("card");
     for (let card of allCards) {
-         card.parentElement.style.display = "flex";
+         card.parentElement.parentElement.style.display = "flex";
     }
 
     typeCheckboxes.forEach((checkbox) => {
@@ -256,10 +256,10 @@ function toggleTypeFiltering(typeCheckboxes, explicit) {
     }
     else {
         return explicit = false;
-    };
+    }
 
-    
-    
+
+
 }
 
 function scaleElementsBySpace() {
@@ -278,8 +278,8 @@ function scaleElementsBySpace() {
 
 
     for (let element of visibleElements) {
-        element.children[0].style.width = `${newSize}rem`;
-        element.children[0].style.height = `${newSize}rem`;
+        element.children[0].children[0].style.width = `${newSize}rem`;
+        element.children[0].children[0].style.height = `${newSize}rem`;
     }
 
 }
@@ -340,10 +340,10 @@ getCompletePokedexData.then(function (data) {
     // Three function that change the tooltip when user hover / move / leave a cell
     const mouseover = function() {
         tooltip.style("display", "block")
-        d3.select(this)._groups[0][0].children[0].style.borderColor = "#282929";
+        d3.select(this)._groups[0][0].children[0].children[0].style.borderColor = "#282929";
     }
     const mousemove = function(event) {
-        let pokemon = findPokemonByName(d3.select(this)._groups[0][0].children[0].classList[1], data);
+        let pokemon = findPokemonByName(d3.select(this)._groups[0][0].children[0].children[0].classList[1], data);
         pokemon = buildPokemon(pokemon);
         tooltip
             .html(`#${pokemon.number} - ${pokemon.name}`)
@@ -354,7 +354,8 @@ getCompletePokedexData.then(function (data) {
     const mouseleave = function() {
         tooltip
             .style("display", "none")
-        d3.select(this)._groups[0][0].children[0].style.borderColor = "#dee2e6"
+        d3.select(this)._groups[0][0].children[0].children[0].style.borderColor = "#dee2e6";
+
     }
     const serialiser = new XMLSerializer();
 

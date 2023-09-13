@@ -144,6 +144,8 @@ export function buildCard(pokemon) {
 
 export function buildHeatmapIcon(pokemon) {
     let cardDiv = document.createElement("div");
+    let surroundingLink = document.createElement("a");
+    surroundingLink.href = `/overview/?pokemon=${pokemon.name}`;
     cardDiv.classList.add("card");
     cardDiv.classList.add(pokemon.name);
     cardDiv.style.width = "2.1rem";
@@ -152,8 +154,9 @@ export function buildHeatmapIcon(pokemon) {
     image.className = "card-img-top";
     image.src = pokemon.image;
 
+    surroundingLink.appendChild(cardDiv);
     cardDiv.appendChild(image);
-    return cardDiv;
+    return surroundingLink;
 
 }
 
