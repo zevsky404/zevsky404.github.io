@@ -261,7 +261,7 @@ function buildStatDiagram(pokemonName) {
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
         let xAxis = d3.scaleLinear()
-            .domain([0, 300])
+            .domain([0, 260])
             .range([0, width]);
 
         let yAxis = d3.scaleBand()
