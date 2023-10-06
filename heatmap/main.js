@@ -1,4 +1,4 @@
-import * as d3 from "d3"
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import {buildCard, buildPokemon, buildHeatmapIcon, findPokemonByName, minMaxScaling} from "../resources/js/utils";
 
 let getCompletePokedexData = d3.csv("../resources/data/pokemon.csv").then((response) => {

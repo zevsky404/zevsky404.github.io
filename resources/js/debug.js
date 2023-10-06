@@ -1,6 +1,6 @@
 // PRINT STATEMENTS FOR DEBUGGING
 import {getCompletePokedexData, buildPokemon, findPokemonByName, findPokemonByNumber, buildCard} from "./utils";
-import {getElement} from "bootstrap/js/src/util";
+
 function debugMain() {
     getCompletePokedexData.then((result) => {
         const ivysaur = buildPokemon(result[1]);
