@@ -1,5 +1,5 @@
 // PRINT STATEMENTS FOR DEBUGGING
-import {getCompletePokedexData, buildPokemon, findPokemonByName, findPokemonByNumber, buildCard} from "./utils";
+import {getCompletePokedexData, buildPokemon, findPokemonByName, findPokemonByNumber, buildCard} from "/resources/js/utils";
 
 function debugMain() {
     getCompletePokedexData.then((result) => {

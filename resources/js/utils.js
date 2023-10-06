@@ -1,6 +1,6 @@
 // UTILITY FUNCTIONS USEFUL FOR THE ENTIRE PROJECT
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-import {Pokemon, BaseStats} from "./objects";
+import {Pokemon, BaseStats} from "/resources/js/objects";
 
 export let getCompletePokedexData = d3.csv("/resources/data/pokemon.csv").then((response) => {
     return response;
