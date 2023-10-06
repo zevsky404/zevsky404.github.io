@@ -319,7 +319,7 @@ function resetOptions() {
 
     let allCards = document.getElementsByClassName("card");
     for (let card of allCards) {
-        card.parentElement.style.display = 'flex';
+        card.parentElement.parentElement.style.display = 'flex';
         card.style.backgroundColor = "transparent";
     }
     scaleElementsBySpace()
