@@ -1,5 +1,5 @@
 // MAIN FILE WHICH CALLS FUNCTIONS FOR EASE OF WORKFLOW
-import {getCompletePokedexData, buildPokemon, buildCard} from "./utils";
+import {getCompletePokedexData, buildPokemon, buildCard} from "./utils.js";
 
 function buildIndexStructure() {
     getCompletePokedexData.then((data) => {
