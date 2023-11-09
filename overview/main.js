@@ -1,5 +1,5 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-import {buildPokemon, findPokemonByName, getCompletePokedexData} from "../resources/js/utils";
+import {buildPokemon, findPokemonByName, getCompletePokedexData} from "../resources/js/utils.js";
 
 export function buildOverview(pokemonName) {
     getCompletePokedexData.then((data) => {

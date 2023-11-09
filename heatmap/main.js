@@ -1,16 +1,9 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-import {buildCard, buildPokemon, buildHeatmapIcon, findPokemonByName, minMaxScaling} from "../resources/js/utils";
+import {buildPokemon, buildHeatmapIcon, findPokemonByName, minMaxScaling} from "../resources/js/utils.js";
 
 let getCompletePokedexData = d3.csv("../resources/data/pokemon.csv").then((response) => {
     return response;
 });
-
-const dimensions = {top: 20,
-    right: 280,
-    bottom: 20,
-    left: 20,
-    width: "100",
-    height: 100};
 
 function colourHeatmapBy(stat, interpolator, data) {
     const filterValues = data.map(entry => parseInt(entry[`${stat}`]));
